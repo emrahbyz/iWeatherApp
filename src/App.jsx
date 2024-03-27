@@ -1,9 +1,9 @@
 import React from "react";
 import Home from "./Components/Home";
-
+import "./App.css";
 const App = () => {
   return (
-    <div className="bg-gray-500 font-nunito text-xl font-bold">
+    <div className="font-nunito text-xl font-bold">
       <Home />
     </div>
   );
