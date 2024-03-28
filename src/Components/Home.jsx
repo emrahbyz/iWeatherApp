@@ -6,13 +6,13 @@ const Home = () => {
       className="text-white flex-col w-full h-[100vh] bg-cover bg-center flex  "
       style={{ backgroundImage: "url('src/images/img/img11.png')" }}
     >
-      <div className=" mt-[46px]  opacity-80   ">
+      <div className=" mt-[36px]  opacity-80   ">
         <div className="flex items-center justify-center gap-2   ">
           <img className="w-[65px]" src="src/images/icons/Vector.png" alt="" />
           <p className="text-5xl">iWeather </p>
         </div>
       </div>
-      <div className="flex items-center justify-center flex-col mt-48 gap-8  ">
+      <div className="flex items-center justify-center flex-col mt-8    gap-8  ">
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="text-2xl font-bold ">
             Welcome to <span className="text-blue-light">TypeWeather</span>
