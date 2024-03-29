@@ -19,9 +19,17 @@ const WeatherData = () => {
         console.log(error);
       }
     };
-  });
+    if (location) {
+      fetchData();
+    }
+  }, [location]);
 
-  return <div>WeatherData</div>;
+  return (
+    <div>
+      Weather
+      <div></div>
+    </div>
+  );
 };
 
 export default WeatherData;
