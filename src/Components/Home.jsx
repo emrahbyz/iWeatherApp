@@ -1,6 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home = () => {
+  const [weatherData, setWeatherData] = useState(null);
+  const [location, setLocation] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.openweathermap.org/data/2.5/onecall?lat=${
+            location.lat
+          }&lon=${location.lon}&exclude=${location}&appid=${
+            import.meta.env.VITE_WEATHER_API
+          }`
+        );
+
+        setWeatherData(response.data);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (location) {
+      fetchData();
+    }
+  }, [location]);
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
   return (
     <div
       className="text-white flex-col w-full h-[100vh] bg-cover bg-center flex  "
@@ -26,9 +56,12 @@ const Home = () => {
             className="text-gray-1100 font-normal w-[450px] bg-gray-1000 h-[64px] px-5 rounded-lg border-none outline-none placeholder"
             type="text"
             placeholder="Search location"
+            value={location}
+            onChange={handleLocationChange}
           />
         </div>
       </div>
+      {weatherData && <div>test</div>}
     </div>
   );
 };
