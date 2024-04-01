@@ -9,7 +9,7 @@ import Test from "./Components/Test";
 const App = () => {
   return (
     <div
-      className="font-nunito  text-white flex-col w-full    bg-cover bg-center flex h-[100vh]"
+      className="font-nunito  text-white flex-col w-full h-[1100px]   bg-cover bg-center flex"
       style={{ backgroundImage: "url('src/images/img/img11.png')" }}
     >
       <Routes>

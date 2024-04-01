@@ -13,7 +13,7 @@ const Home = () => {
     const key = import.meta.env.VITE_WEATHER_API;
     try {
       const { data } = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
       );
       setWeather(data);
     } catch (error) {
