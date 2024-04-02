@@ -2,7 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        "spin-pulse": "pulse 100s linear infinite ",
+      },
+    },
     colors: {
       "blue-light": "#8FB2F5",
       "gray-900": "#13131A",
