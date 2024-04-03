@@ -3,9 +3,6 @@ import Home from "./Components/Home";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
-import Weather from "./Components/Weather";
-import Test from "./Components/Test";
-
 const App = () => {
   return (
     <div
@@ -14,7 +11,7 @@ const App = () => {
     >
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="test" element={<Test />} />
+        {/* <Route path="test" element={<CitySuggestions />} /> */}
       </Routes>
     </div>
   );

@@ -3,12 +3,14 @@ import axios from "axios";
 import { usePosition } from "use-position";
 import Weather from "./Weather";
 
-const Home = () => {
-  const [location, setLocation] = useState("");
+const Home = ({ onSearchChange }) => {
+  const [weatherData, setWeatherData] = useState(null);
+  const [city, setCity] = useState("");
   const [weather, setWeather] = useState();
   const [uvData, setUvData] = useState();
   const { latitude, longitude } = usePosition();
-
+  const [loading, setLoading] = useState(false); // Yüklenme durumunu takip etmek için state
+  const [search, setSearch] = useState(null);
   const getWeatherData = async (lat, lon) => {
     const key = import.meta.env.VITE_WEATHER_API;
     try {
@@ -20,10 +22,6 @@ const Home = () => {
       console.log(error);
     }
   };
-  const uvValue = uvData?.value;
-  console.log("UV Index Value:", uvValue);
-  console.log("Latitude:", latitude);
-  console.log("Longitude:", longitude);
 
   const getUvData = async (lat, lon) => {
     const key = import.meta.env.VITE_WEATHER_API_1;
@@ -44,10 +42,40 @@ const Home = () => {
     }
   }, [latitude, longitude]);
 
-  const handleLocationChange = (event) => {
-    setLocation(event.target.value);
-  };
+  useEffect(() => {
+    const delayTimer = setTimeout(() => {
+      if (city) {
+        fetchData();
+      }
+    }, 1000); // 500 milisaniye bekleyin, ardından isteği gönderin
 
+    return () => clearTimeout(delayTimer); // Önceki zamanlayıcıyı temizle
+  }, [city]);
+
+  const fetchData = async () => {
+    const key = import.meta.env.VITE_WEATHER_API_2;
+
+    try {
+      setLoading(true); // İstek başladığında yüklenme durumunu true yap
+      const { data } = await axios.get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&units=metric`
+      );
+      setWeatherData(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error.message);
+      if (error.response.status === 404) {
+        // API'den dönen hata durumunu kontrol ediyoruz
+        // 404 hatası alındığında kullanıcıya uygun bir mesaj gösterebiliriz
+        alert("Lütfen geçerli bir şehir adı girin.");
+      }
+    }
+    setLoading(false);
+  };
+  const handleLocationChange = (event) => {
+    const { value } = event.target;
+    setCity(value);
+  };
   return (
     <div
       className={`text-white flex-col w-full h-[100vh] bg-cover bg-center flex ${
@@ -78,9 +106,10 @@ const Home = () => {
               className="text-gray-1100 font-normal w-[450px] bg-gray-1000 h-[64px] px-5 rounded-lg border-none outline-none placeholder"
               type="text"
               placeholder="Search location"
-              value={location}
+              value={city}
               onChange={handleLocationChange}
             />
+            {loading && <div className="spinner">test</div>}
           </div>
         </div>
       )}
@@ -89,15 +118,21 @@ const Home = () => {
         <Weather weather={weather} uvData={uvData} />
       </div>
 
-      {latitude && longitude && (
+      {weatherData && latitude && longitude && (
         <div className="flex items-center absolute right-0 mr-12 justify-end mt-8">
           <input
             className="text-gray-1100 font-normal w-[450px] bg-gray-1000 h-[64px] px-5 rounded-lg border-none outline-none placeholder"
             type="text"
             placeholder="Search location"
-            value={location}
+            value={city}
             onChange={handleLocationChange}
           />
+          {loading && (
+            <div className="w-10 h-9 text-white">
+              {" "}
+              <p>test</p>
+            </div> // Yükleme durumu true ise spinner göstergesi göster
+          )}
         </div>
       )}
     </div>
