@@ -9,6 +9,7 @@ export default {
     },
     colors: {
       "blue-light": "#8FB2F5",
+      "blue-thin": "#BFBFD4",
       "gray-900": "#13131A",
       "gray-800": "#16161F",
       "gray-700": "#1C1C27",

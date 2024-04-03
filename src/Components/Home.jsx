@@ -4,9 +4,9 @@ import { usePosition } from "use-position";
 import Weather from "./Weather";
 
 const Home = () => {
-  const [weatherData, setWeatherData] = useState(null);
   const [location, setLocation] = useState("");
   const [weather, setWeather] = useState();
+  const [uvData, setUvData] = useState();
   const { latitude, longitude } = usePosition();
 
   const getWeatherData = async (lat, lon) => {
@@ -20,32 +20,29 @@ const Home = () => {
       console.log(error);
     }
   };
+  const uvValue = uvData?.value;
+  console.log("UV Index Value:", uvValue);
+  console.log("Latitude:", latitude);
+  console.log("Longitude:", longitude);
 
-  useEffect(() => {
-    latitude && longitude && getWeatherData(latitude, longitude);
-  }, [latitude, longitude]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/onecall?lat=${
-            location.lat
-          }&lon=${location.lon}&exclude=${location}&appid=${
-            import.meta.env.VITE_WEATHER_API
-          }`
-        );
-
-        setWeatherData(response.data);
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (location) {
-      fetchData();
+  const getUvData = async (lat, lon) => {
+    const key = import.meta.env.VITE_WEATHER_API_1;
+    try {
+      const { data } = await axios.get(
+        `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${key}`
+      );
+      setUvData(data);
+    } catch (error) {
+      console.log(error);
     }
-  }, [location]);
+  };
+
+  useEffect(() => {
+    if (latitude && longitude) {
+      getWeatherData(latitude, longitude);
+      getUvData(latitude, longitude);
+    }
+  }, [latitude, longitude]);
 
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
@@ -87,7 +84,11 @@ const Home = () => {
           </div>
         </div>
       )}
-      {weatherData && <div>test</div>}
+
+      <div>
+        <Weather weather={weather} uvData={uvData} />
+      </div>
+
       {latitude && longitude && (
         <div className="flex items-center absolute right-0 mr-12 justify-end mt-8">
           <input
@@ -99,9 +100,6 @@ const Home = () => {
           />
         </div>
       )}
-      <div>
-        <Weather weather={weather} />
-      </div>
     </div>
   );
 };
