@@ -8,11 +8,14 @@ import {
   Sun,
 } from "phosphor-react";
 
-const Weather = ({ weather, uvData }) => {
+const Weather = ({ weather, uvData, city }) => {
   if (!weather) {
     return <p>Yükleniyor...</p>;
   }
   if (!uvData) {
+    return <p>Yükleniyor...</p>;
+  }
+  if (!city) {
     return <p>Yükleniyor...</p>;
   }
 
