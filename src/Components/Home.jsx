@@ -3,16 +3,17 @@ import axios from "axios";
 import { usePosition } from "use-position";
 import Weather from "./Weather";
 import debounce from "debounce-promise";
-
+import ForecastWeather from "./ForecastWeather";
 import AsyncSelect from "react-select/async";
 
-const Home = ({ onSearchChange }) => {
+const Home = () => {
+  const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState();
   const [uvData, setUvData] = useState();
   const { latitude, longitude } = usePosition();
-  const [loading, setLoading] = useState(false); // Yüklenme durumunu takip etmek için state
-  const [search, SetSearch] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState(null);
 
   const getWeatherData = async (lat, lon) => {
     const key = import.meta.env.VITE_WEATHER_API;
@@ -74,18 +75,47 @@ const Home = ({ onSearchChange }) => {
       console.log(error);
     }
   };
+  const fetchData = async (selectedCity) => {
+    if (!selectedCity || selectedCity.trim() === "") {
+      return;
+    }
+
+    setLoading(true);
+    const key = import.meta.env.VITE_WEATHER_API_2;
+
+    try {
+      const { data } = await axios.get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${selectedCity}&appid=${key}&units=metric`
+      );
+      setWeatherData(data);
+    } catch (error) {
+      console.log(error.message);
+      if (error.response.status === 404) {
+        alert("Lütfen geçerli bir şehir adı girin.");
+      }
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
     if (latitude && longitude) {
       getWeatherData(latitude, longitude);
       getUvData(latitude, longitude);
     }
+    fetchData();
   }, [latitude, longitude]);
 
-  const handleLocationChange = (searchData) => {
-    SetSearch(searchData);
-    onSearchChange(searchData);
-    loadOptions();
+  const handleLocationChange = async (selectedOption) => {
+    if (selectedOption) {
+      const selectedCity = selectedOption.label.split("-")[0].trim();
+      setCity(selectedCity);
+
+      try {
+        await fetchData(selectedCity);
+      } catch (error) {
+        console.error("Hava durumu verileri getirilirken hata oluştu:", error);
+      }
+    }
   };
 
   return (
@@ -140,6 +170,7 @@ const Home = ({ onSearchChange }) => {
 
       <div>
         <Weather weather={weather} uvData={uvData} />
+        <ForecastWeather weatherData={weatherData} />
       </div>
 
       {latitude && longitude && (
