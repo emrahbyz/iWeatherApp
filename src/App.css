@@ -8,3 +8,165 @@ input::placeholder {
     transform: rotate(360deg);
   }
 }
+.css-13cymwt-control {
+  outline: none !important;
+  border: none !important;
+  border-radius: 8px !important;
+  background-color: #1e1e29 !important;
+}
+.css-1f43avz-a11yText-A11yText {
+  outline: none !important;
+  border: none !important;
+}
+.css-t3ipsp-control {
+  outline: none !important;
+  border: none !important;
+}
+.css-1nmdiq5-menu {
+  background-color: #1f2937 !important;
+  outline: none !important;
+  border: none !important;
+}
+.css-1nmdiq5-menu-item {
+  background-color: #1e1e29 !important;
+}
+#react-select-2-listbox {
+  /* Tüm alt öğeler için stiller */
+  background-color: #1e1e29 !important;
+
+  padding: 10px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 6px;
+}
+
+.css-nhbbvo-NoOptionsMessage2 {
+  background-color: #1e1e29 !important;
+  color: #f7f5f5 !important;
+}
+#react-select-2-option-0 {
+  background-color: #1e1e29 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+#react-select-2-option-0:hover {
+  background-color: #6e6e82 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+#react-select-2-option-1 {
+  background-color: #1e1e29 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-2-option-1:hover {
+  background-color: #6e6e82 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-2-option-2 {
+  background-color: #1e1e29 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-2-option-2:hover {
+  background-color: #6e6e82 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-2-option-3 {
+  background-color: #1e1e29 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-2-option-3:hover {
+  background-color: #6e6e82 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-2-option-4 {
+  background-color: #1e1e29 !important;
+  color: #f7f5f5 !important;
+
+  margin-top: 4px;
+}
+#react-select-2-option-4:hover {
+  background-color: #6e6e82 !important;
+  color: #f7f5f5 !important;
+  margin-top: 4px;
+}
+
+.css-art2ul-ValueContainer2 {
+  outline: none !important;
+  border: none !important;
+  background-color: #1e1e29 !important;
+  border-radius: 4px !important;
+}
+
+#react-select-2-listbox {
+  background-color: #1e1e29 !important;
+}
+
+.css-art2ul-ValueContainer2 {
+  /* Örnek stiller */
+  width: 450px;
+  height: 64px;
+  padding: 0 5px;
+  background-color: #1e1e29;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+.css-art2ul-ValueContainer2 input::placeholder {
+  /* Placeholder stilleri */
+  color: #a0aec0;
+}
+.css-b62m3t-container {
+  border: none;
+  outline: none;
+  background-color: black;
+  border-radius: 10px;
+}
+
+.css-4xgw5l-IndicatorsContainer2 {
+  width: 0;
+}
+.css-1xc3v61-indicatorContainer {
+  width: 0;
+}
+.css-1xc3v61-indicatorContainer {
+  width: 0;
+}
+
+#react-select-2-input {
+  color: white !important;
+  font-weight: 400;
+  font-size: 16px;
+}
+.css-o9ehiq-loadingIndicator {
+  width: 0;
+}
+.css-1xtdfmb-LoadingDot {
+  width: 0;
+}
+
+.css-zoievk-LoadingDot {
+  width: 0;
+}
+.css-x748d8-LoadingDot {
+  width: 0;
+}
+.css-4xgw5l-IndicatorsContainer2 {
+  width: 0;
+}
+.css-15lsz6c-indicatorContainer {
+  visibility: hidden;
+}
