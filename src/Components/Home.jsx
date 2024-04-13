@@ -11,7 +11,9 @@ const Home = () => {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState();
   const [uvData, setUvData] = useState();
+
   const { latitude, longitude } = usePosition();
+
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState(null);
 
@@ -31,7 +33,7 @@ const Home = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?minPopulation=100000&namePrefix=${inputValue}`,
+        `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?minPopulation=60000&namePrefix=${inputValue}`,
         {
           headers: {
             "X-RapidAPI-Key":
@@ -66,15 +68,19 @@ const Home = () => {
 
   const getUvData = async (lat, lon) => {
     const key = import.meta.env.VITE_WEATHER_API_1;
+
     try {
       const { data } = await axios.get(
         `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${key}`
       );
+
+      console.log("UV verisi alındı:", data);
       setUvData(data);
     } catch (error) {
-      console.log(error);
+      console.error("UV verisi alınamadı:", error);
     }
   };
+
   const fetchData = async (selectedCity) => {
     if (!selectedCity || selectedCity.trim() === "") {
       return;
@@ -101,6 +107,7 @@ const Home = () => {
     if (latitude && longitude) {
       getWeatherData(latitude, longitude);
       getUvData(latitude, longitude);
+      getUvDatas(latitudes, longitudes);
     }
     fetchData();
   }, [latitude, longitude]);
