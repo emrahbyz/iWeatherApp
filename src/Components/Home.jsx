@@ -44,7 +44,6 @@ const Home = () => {
       );
 
       const options = response.data.data.map((city) => {
-        // city.name ve city.countryCode değerlerini kontrol et
         const name = city.name || "Şehir İsmi";
         `-`;
         const countryCode = city.countryCode || "Ülke Kodu";
@@ -60,7 +59,6 @@ const Home = () => {
       callback(options); // Seçenekleri geri çağır
     } catch (error) {
       console.error("Şehir veri alırken hata oluştu:", error);
-      // Hatayı uygun şekilde ele alın (örneğin, kullanıcıya hata mesajı gösterin)
       callback([]); // Daha fazla yüklemeyi engellemek için boş bir dizi döndürün
     }
     setLoading(false); // İstek tamamlandığında yükleme durumunu false yapın
@@ -107,7 +105,6 @@ const Home = () => {
     if (latitude && longitude) {
       getWeatherData(latitude, longitude);
       getUvData(latitude, longitude);
-      getUvDatas(latitudes, longitudes);
     }
     fetchData();
   }, [latitude, longitude]);
@@ -119,9 +116,7 @@ const Home = () => {
 
       try {
         await fetchData(selectedCity);
-      } catch (error) {
-        console.error("Hava durumu verileri getirilirken hata oluştu:", error);
-      }
+      } catch (error) {}
     }
   };
 
@@ -158,7 +153,7 @@ const Home = () => {
                 placeholder="Search location"
                 onChange={handleLocationChange}
                 value={search}
-                isLoading={loading} // isLoading prop'unu ekleyin
+                isLoading={loading}
               />
             </div>
 
@@ -176,24 +171,32 @@ const Home = () => {
       )}
 
       <div>
-        <Weather weather={weather} uvData={uvData} />
+        <Weather weather={weather} uvData={uvData} weatherData={weatherData} />
         <ForecastWeather weatherData={weatherData} />
       </div>
 
       {latitude && longitude && (
-        <div className="flex items-center absolute right-0 mr-12 justify-end mt-8">
-          <input
-            className="text-gray-1100 font-normal w-[450px] bg-gray-1000 h-[64px] px-5 rounded-lg border-none outline-none placeholder"
-            type="text"
-            placeholder="Search location"
-            value={city}
-            onChange={handleLocationChange}
-          />
+        <div className="flex items-center absolute right-0 mr-16 justify-end mt-8  ">
+          <div>
+            <AsyncSelect
+              className="select"
+              debounceTimeout={1000}
+              loadOptions={loadOptions}
+              placeholder="Search location"
+              onChange={handleLocationChange}
+              value={search}
+              isLoading={loading}
+            />
+          </div>
+
           {loading && (
-            <div className="w-10 h-9 text-white">
-              {" "}
-              <p>test</p>
-            </div> // Yükleme durumu true ise spinner göstergesi göster
+            <div className="spinner absolute mr-5">
+              <img
+                src="src/images/img/12.png"
+                className="w-[32px] h-[32px] animate-spin animate-infinite "
+                alt=""
+              />
+            </div>
           )}
         </div>
       )}

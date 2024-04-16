@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   IconContext,
   ThermometerSimple,
@@ -8,15 +9,15 @@ import {
   Sun,
 } from "phosphor-react";
 
-const Weather = ({ weather, uvData }) => {
-  if (!weather) {
-    return <p>Yükleniyor...</p>;
-  }
-  if (!uvData) {
+const Weather = ({ weather, uvData, weatherData }) => {
+  if (!weather || !uvData) {
     return <p>Yükleniyor...</p>;
   }
 
-  console.log(weather.data);
+  if (weather && weatherData) {
+    return;
+  }
+
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -26,6 +27,7 @@ const Weather = ({ weather, uvData }) => {
     "Friday",
     "Saturday",
   ];
+
   const currentDayIndex = new Date().getDay();
   const oneDay = (currentDayIndex + 1) % 7;
   const twoDay = (currentDayIndex + 2) % 7;
@@ -42,11 +44,11 @@ const Weather = ({ weather, uvData }) => {
     };
     return date.toLocaleDateString("en-US", options);
   };
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-  }
 
-  console.log(weather);
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  };
+
   return (
     <IconContext.Provider
       value={{
@@ -269,5 +271,4 @@ const Weather = ({ weather, uvData }) => {
     </IconContext.Provider>
   );
 };
-
 export default Weather;

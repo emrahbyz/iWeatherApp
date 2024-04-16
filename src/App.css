@@ -21,6 +21,7 @@ input::placeholder {
 .css-t3ipsp-control {
   outline: none !important;
   border: none !important;
+  background-color: #1f2937 !important;
 }
 .css-1nmdiq5-menu {
   background-color: #1f2937 !important;
@@ -41,6 +42,16 @@ input::placeholder {
   border-radius: 6px;
 }
 
+#react-select-3-listbox {
+  /* Tüm alt öğeler için stiller */
+  background-color: #1e1e29 !important;
+
+  padding: 10px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 6px;
+}
 .css-nhbbvo-NoOptionsMessage2 {
   background-color: #1e1e29 !important;
   color: #f7f5f5 !important;
@@ -115,7 +126,6 @@ input::placeholder {
 }
 
 .css-art2ul-ValueContainer2 {
-  /* Örnek stiller */
   width: 450px;
   height: 64px;
   padding: 0 5px;
@@ -126,7 +136,6 @@ input::placeholder {
 }
 
 .css-art2ul-ValueContainer2 input::placeholder {
-  /* Placeholder stilleri */
   color: #a0aec0;
 }
 .css-b62m3t-container {
@@ -169,4 +178,62 @@ input::placeholder {
 }
 .css-15lsz6c-indicatorContainer {
   visibility: hidden;
+}
+
+#react-select-3-option-0 {
+  background-color: #1e1e29 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+#react-select-3-option-0:hover {
+  background-color: #6e6e82 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+#react-select-3-option-1 {
+  background-color: #1e1e29 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-3-option-1:hover {
+  background-color: #6e6e82 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-3-option-2 {
+  background-color: #1e1e29 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-3-option-2:hover {
+  background-color: #6e6e82 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-3-option-3 {
+  background-color: #1e1e29 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-3-option-3:hover {
+  background-color: #6e6e82 !important;
+  color: #f7f5f5 !important;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 4px;
+}
+#react-select-3-option-4 {
+  background-color: #1e1e29 !important;
+  color: #f7f5f5 !important;
+
+  margin-top: 4px;
+}
+#react-select-3-option-4:hover {
+  background-color: #6e6e82 !important;
+  color: #f7f5f5 !important;
+  margin-top: 4px;
 }
