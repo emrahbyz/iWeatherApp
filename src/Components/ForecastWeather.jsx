@@ -56,7 +56,7 @@ const ForecastWeather = ({ weatherData }) => {
       } else if (lowerDescription.includes("heavy rain")) {
         return "src/images/icons/rain.png";
       } else if (lowerDescription.includes("thunderstorm")) {
-        return "src/images/icons/rain.png";
+        return "src/images/icons/Thunder.png";
       } else if (lowerDescription.includes("snow")) {
         return "src/images/icons/Lsnow.png";
       } else if (lowerDescription.includes("light rain")) {
