@@ -13,6 +13,77 @@ const ForecastWeather = ({ weatherData }) => {
     return <p>Yükleniyor...</p>;
   }
 
+  const getWeatherIcon = (isNight, weatherDescription) => {
+    const lowerDescription = weatherDescription.toLowerCase();
+
+    if (isNight) {
+      // Gece için ikonlar
+      if (lowerDescription.includes("clear sky")) {
+        return "src/images/icons/sun.png"; // Açık hava için ikon
+      } else if (lowerDescription.includes("few clouds")) {
+        return "src/images/icons/rain.png"; // Bulutlu hava için ikon
+      } else if (lowerDescription.includes("scattered clouds")) {
+        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+      } else if (lowerDescription.includes("broken clouds")) {
+        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+      } else if (lowerDescription.includes("overcast clouds")) {
+        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+      } else if (lowerDescription.includes("rain")) {
+        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+      } else if (lowerDescription.includes("heavy rain")) {
+        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+      } else if (lowerDescription.includes("thunderstorm")) {
+        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+      } else if (lowerDescription.includes("light rain")) {
+        return "src/images/icons/rain-sun.png"; // Yağmurlu hava için ikon
+      } else {
+        return "src/images/icons/sun.png"; // Diğer durumlar için varsayılan gündüz ikonu
+      }
+    } else {
+      // Gündüz için ikonlar
+      if (lowerDescription.includes("clear sky")) {
+        return "src/images/icons/sun.png";
+      } else if (lowerDescription.includes("few clouds")) {
+        return "src/images/icons/sun-little-cloud.png";
+      } else if (lowerDescription.includes("scattered clouds")) {
+        return "src/images/icons/cloud-sun.png";
+      } else if (lowerDescription.includes("broken clouds")) {
+        return "src/images/icons/cloud-sun.png";
+      } else if (lowerDescription.includes("overcast clouds")) {
+        return "src/images/icons/sun-little-cloud.png";
+      } else if (lowerDescription.includes("rain")) {
+        return "src/images/icons/rain.png";
+      } else if (lowerDescription.includes("heavy rain")) {
+        return "src/images/icons/rain.png";
+      } else if (lowerDescription.includes("thunderstorm")) {
+        return "src/images/icons/rain.png";
+      } else if (lowerDescription.includes("snow")) {
+        return "src/images/icons/Lsnow.png";
+      } else if (lowerDescription.includes("light rain")) {
+        return "src/images/icons/rain.png";
+      } else if (lowerDescription.includes("shower rain")) {
+        return "src/images/icons/rain";
+      } else if (lowerDescription.includes("moderate rain")) {
+        return "src/images/icons/rain-sun.png";
+      } else if (lowerDescription.includes("heavy shower rain")) {
+        return "src/images/icons/rain-sun.png";
+      } else if (lowerDescription.includes("thunderstorm with heavy rain")) {
+        return "src/images/icons/Turnado.png";
+      } else if (lowerDescription.includes("cold")) {
+        return "src/images/icons/Lsnow.png";
+      } else {
+        return "src/images/icons/sun.png"; // Diğer durumlar için varsayılan gündüz ikonu
+      }
+    }
+  };
+
+  // Weather verileri ve ikon yolunu almak için kullanım
+  const currentHour = new Date().getHours();
+  const isNight = currentHour < 6 || currentHour >= 18;
+  const weatherDescription = weatherData.list[0].weather[0].description;
+
+  const iconPath = getWeatherIcon(isNight, weatherDescription);
+
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -93,7 +164,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-80 h-80 mt-20 ml-40    ">
                   <img
                     className="w-[130px]   animate-spin-pulse ease-in-out"
-                    src="src/images/icons/icon7.png"
+                    src={iconPath}
                     alt=""
                   />
                 </div>

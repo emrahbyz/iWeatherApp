@@ -18,6 +18,45 @@ const Weather = ({ weather, uvData, weatherData }) => {
     return;
   }
 
+  const getWeatherIcon = (temperature, isNight, weatherDescription) => {
+    if (isNight) {
+      // Gece için ikonlar
+      if (weatherDescription.includes("clear")) {
+        return "src/images/icons/night-clear.png"; // Açık gece için ikon
+      } else if (weatherDescription.includes("cloud")) {
+        return "src/images/icons/night-cloudy.png"; // Bulutlu gece için ikon
+      } else if (weatherDescription.includes("rain")) {
+        return "src/images/icons/night-rainy.png"; // Yağmurlu gece için ikon
+      } else {
+        return "src/images/icons/night-default.png"; // Diğer durumlar için varsayılan gece ikonu
+      }
+    } else {
+      // Gündüz için ikonlar
+      const description = weatherDescription.toLowerCase();
+      if (description.includes("clear")) {
+        return "src/images/icons/sun.png"; // Açık hava için ikon
+      } else if (description.includes("cloud")) {
+        return "src/images/icons/cloudy.png"; // Bulutlu hava için ikon
+      } else if (description.includes("rain")) {
+        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+      } else {
+        return "src/images/icons/day-default.png"; // Diğer durumlar için varsayılan gündüz ikonu
+      }
+    }
+  };
+
+  // Weather component içinde kullanımı
+  const currentTemperature = weather.list[0].main.temp.toFixed(0);
+  const currentHour = new Date().getHours();
+  const isNight = currentHour < 6 || currentHour >= 18;
+  const weatherDescription =
+    weather.list[0].weather[0].description.toLowerCase();
+  const iconPath = getWeatherIcon(
+    parseInt(currentTemperature),
+    isNight,
+    weatherDescription
+  );
+
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -98,7 +137,7 @@ const Weather = ({ weather, uvData, weatherData }) => {
                 <div className="w-80 h-80 mt-20 ml-40    ">
                   <img
                     className="w-[130px]   animate-spin-pulse ease-in-out"
-                    src="src/images/icons/icon7.png"
+                    src={iconPath}
                     alt=""
                   />
                 </div>
