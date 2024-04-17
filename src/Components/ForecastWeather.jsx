@@ -32,16 +32,16 @@ const ForecastWeather = ({ weatherData }) => {
 
     const icons = [];
 
-    // 5 günlük hava durumu verilerini döngü ile kontrol et
     for (let i = 0; i < 5; i++) {
       const weatherDescription = weatherData.list[i].weather[0].description;
-      const currentHour = new Date(weatherData.list[i]).getHours();
-      const isNight = currentHour < 6 || currentHour >= 20;
+      const timestamp = weatherData.list[i].dt; // Unix zaman damgası (saniye cinsinden)
+      const date = new Date(timestamp * 1000); // Unix zaman damgasını milisaniye cinsine çevirerek tarih nesnesi oluştur
+      const currentHour = date.getHours();
+      const isNight = currentHour < 6 || currentHour >= 19;
 
-      let iconPath = "src/images/icons/sun-little-cloud.png"; // Varsayılan simge
+      let iconPath = "src/images/icons/sun-little-cloud.png";
 
       if (isNight) {
-        // Gece için simgeler
         if (weatherDescription.includes("clear sky")) {
           iconPath = nightIcons[0];
         } else if (weatherDescription.includes("few clouds")) {
@@ -54,7 +54,6 @@ const ForecastWeather = ({ weatherData }) => {
           iconPath = nightIcons[4];
         }
       } else {
-        // Gündüz için simgeler
         if (weatherDescription.includes("clear sky")) {
           iconPath = dayIcons[0];
         } else if (weatherDescription.includes("few clouds")) {
@@ -68,16 +67,13 @@ const ForecastWeather = ({ weatherData }) => {
         }
       }
 
-      // İkon ve hava durumu açıklamasını bir nesne olarak ekle
       icons.push({ iconPath, weatherDescription });
     }
 
     return icons;
   };
 
-  // Örnek kullanım: 5 günlük hava durumu verilerinden ikonları almak
   const weatherIcons = getWeatherIconsForFiveDays(weatherData);
-  console.log(weatherIcons);
 
   const daysOfWeek = [
     "Sunday",
@@ -159,7 +155,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-80 h-80 mt-20 ml-40    ">
                   <img
                     className="w-[130px]   animate-spin-pulse ease-in-out"
-                    src={weatherIcons[0].iconPath} // İlk gün için ikon yolunu al
+                    src={weatherIcons[0].iconPath}
                     alt=""
                   />
                 </div>

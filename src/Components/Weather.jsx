@@ -18,44 +18,70 @@ const Weather = ({ weather, uvData, weatherData }) => {
     return;
   }
 
-  const getWeatherIcon = (temperature, isNight, weatherDescription) => {
-    if (isNight) {
-      // Gece için ikonlar
-      if (weatherDescription.includes("clear")) {
-        return "src/images/icons/night-clear.png"; // Açık gece için ikon
-      } else if (weatherDescription.includes("cloud")) {
-        return "src/images/icons/night-cloudy.png"; // Bulutlu gece için ikon
-      } else if (weatherDescription.includes("rain")) {
-        return "src/images/icons/night-rainy.png"; // Yağmurlu gece için ikon
+  const getWeatherIconsForFiveDays = (weather) => {
+    const dayIcons = [
+      "src/images/icons/sun.png",
+      "src/images/icons/sun-little-cloud.png",
+      "src/images/icons/cloud-sun.png",
+      "src/images/icons/rain.png",
+      "src/images/icons/snow.png",
+    ];
+
+    const nightIcons = [
+      "src/images/icons/night-sun.png",
+      "src/images/icons/night-clouds.png",
+      "src/images/icons/night-cloud.png",
+      "src/images/icons/night-rain.png",
+      "src/images/icons/snow.png",
+    ];
+
+    const icons = [];
+
+    for (let i = 0; i < 5; i++) {
+      const weatherDescription = weather.list[i].weather[0].description;
+      const timestamp = weather.list[i].dt; // Unix zaman damgası (saniye cinsinden)
+      const date = new Date(timestamp * 1000); // Unix zaman damgasını milisaniye cinsine çevirerek tarih nesnesi oluştur
+      const currentHour = date.getHours();
+      const isNight = currentHour < 6 || currentHour >= 20;
+      let iconPath = "src/images/icons/sun-little-cloud.png";
+      if (isNight) {
+        // Gece için simgeler
+        if (weatherDescription.includes("clear sky")) {
+          iconPath = nightIcons[0];
+        } else if (weatherDescription.includes("few clouds")) {
+          iconPath = nightIcons[1];
+        } else if (weatherDescription.includes("scattered clouds")) {
+          iconPath = nightIcons[2];
+        } else if (weatherDescription.includes("rain")) {
+          iconPath = nightIcons[3];
+        } else if (weatherDescription.includes("snow")) {
+          iconPath = nightIcons[4];
+        }
       } else {
-        return "src/images/icons/night-default.png"; // Diğer durumlar için varsayılan gece ikonu
+        // Gündüz için simgeler
+        if (weatherDescription.includes("clear sky")) {
+          iconPath = dayIcons[0];
+        } else if (weatherDescription.includes("few clouds")) {
+          iconPath = dayIcons[1];
+        } else if (weatherDescription.includes("scattered clouds")) {
+          iconPath = dayIcons[2];
+        } else if (weatherDescription.includes("rain")) {
+          iconPath = dayIcons[3];
+        } else if (weatherDescription.includes("snow")) {
+          iconPath = dayIcons[4];
+        }
       }
-    } else {
-      // Gündüz için ikonlar
-      const description = weatherDescription.toLowerCase();
-      if (description.includes("clear")) {
-        return "src/images/icons/sun.png"; // Açık hava için ikon
-      } else if (description.includes("cloud")) {
-        return "src/images/icons/cloudy.png"; // Bulutlu hava için ikon
-      } else if (description.includes("rain")) {
-        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
-      } else {
-        return "src/images/icons/day-default.png"; // Diğer durumlar için varsayılan gündüz ikonu
-      }
+
+      // İkon ve hava durumu açıklamasını bir nesne olarak ekle
+      icons.push({ iconPath, weatherDescription });
     }
+
+    return icons;
   };
 
-  // Weather component içinde kullanımı
-  const currentTemperature = weather.list[0].main.temp.toFixed(0);
-  const currentHour = new Date().getHours();
-  const isNight = currentHour < 6 || currentHour >= 18;
-  const weatherDescription =
-    weather.list[0].weather[0].description.toLowerCase();
-  const iconPath = getWeatherIcon(
-    parseInt(currentTemperature),
-    isNight,
-    weatherDescription
-  );
+  // Örnek kullanım: 5 günlük hava durumu verilerinden ikonları almak
+  const weatherIcons = getWeatherIconsForFiveDays(weather);
+  console.log(weatherIcons);
 
   const daysOfWeek = [
     "Sunday",
@@ -137,7 +163,7 @@ const Weather = ({ weather, uvData, weatherData }) => {
                 <div className="w-80 h-80 mt-20 ml-40    ">
                   <img
                     className="w-[130px]   animate-spin-pulse ease-in-out"
-                    src={iconPath}
+                    src={weatherIcons[0].iconPath}
                     alt=""
                   />
                 </div>
@@ -209,7 +235,7 @@ const Weather = ({ weather, uvData, weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className="animate-spin-pulse ease-in-out"
-                    src="src/images/icons/sun clouds-1.png"
+                    src={weatherIcons[0].iconPath}
                     alt=""
                   />
                 </div>
@@ -229,7 +255,7 @@ const Weather = ({ weather, uvData, weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className="animate-spin-pulse ease-in-out"
-                    src="src/images/icons/sun clouds.png"
+                    src={weatherIcons[0].iconPath}
                     alt=""
                   />
                 </div>
@@ -249,7 +275,7 @@ const Weather = ({ weather, uvData, weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className="animate-spin-pulse ease-in-out"
-                    src="src/images/icons/Moon.png"
+                    src={weatherIcons[0].iconPath}
                     alt=""
                   />
                 </div>
@@ -270,7 +296,7 @@ const Weather = ({ weather, uvData, weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className=" animate-spin-pulse ease-in-out"
-                    src="src/images/icons/Thunder.png"
+                    src={weatherIcons[0].iconPath}
                     alt=""
                   />
                 </div>
@@ -290,7 +316,7 @@ const Weather = ({ weather, uvData, weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className=" animate-spin-pulse ease-in-out"
-                    src="src/images/icons/Group 8.png"
+                    src={weatherIcons[0].iconPath}
                     alt=""
                   />
                 </div>
