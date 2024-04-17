@@ -13,107 +13,71 @@ const ForecastWeather = ({ weatherData }) => {
     return <p>Yükleniyor...</p>;
   }
 
-  const getWeatherIcon = (
-    isNight,
-    weatherDescription,
-    minTemperature,
-    maxTemperature
-  ) => {
-    const lowerDescription = weatherDescription.toLowerCase();
+  const getWeatherIconsForFiveDays = (weatherData) => {
+    const dayIcons = [
+      "src/images/icons/sun.png",
+      "src/images/icons/sun-little-cloud.png",
+      "src/images/icons/cloud-sun.png",
+      "src/images/icons/rain.png",
+      "src/images/icons/snow.png",
+    ];
 
-    if (isNight) {
-      // Gece için ikonlar
-      if (lowerDescription.includes("clear sky")) {
-        return "src/images/icons/sun.png";
-      } else if (lowerDescription.includes("few clouds")) {
-        return "src/images/icons/icon2.png";
-      } else if (lowerDescription.includes("scattered clouds")) {
-        return "src/images/icons/night-clouds.png";
-      } else if (lowerDescription.includes("broken clouds")) {
-        return "src/images/icons/night-cloud.png";
-      } else if (lowerDescription.includes("overcast clouds")) {
-        return "src/images/icons/sun-little-cloud.png";
-      } else if (lowerDescription.includes("rain")) {
-        return "src/images/icons/night-rain.png";
-      } else if (lowerDescription.includes("heavy rain")) {
-        return "src/images/icons/night-rain.png";
-      } else if (lowerDescription.includes("thunderstorm")) {
-        return "src/images/icons/Thunder.png";
-      } else if (lowerDescription.includes("snow")) {
-        return "src/images/icons/Lsnow.png";
-      } else if (lowerDescription.includes("light rain")) {
-        return "src/images/icons/rain.png";
-      } else if (lowerDescription.includes("shower rain")) {
-        return "src/images/icons/rain.png";
-      } else if (lowerDescription.includes("moderate rain")) {
-        return "src/images/icons/rain-sun.png";
-      } else if (lowerDescription.includes("heavy shower rain")) {
-        return "src/images/icons/rain-sun.png";
-      } else if (lowerDescription.includes("thunderstorm with heavy rain")) {
-        return "src/images/icons/Turnado.png";
-      } else if (lowerDescription.includes("cold")) {
-        return "src/images/icons/Lsnow.png";
-      } else {
-        return "src/images/icons/sun.png"; // Diğer durumlar için varsayılan gündüz ikonu
-      }
-    } else {
-      // Gündüz için ikonlar
-      if (lowerDescription.includes("clear sky")) {
-        return "src/images/icons/sun.png";
-      } else if (lowerDescription.includes("few clouds")) {
-        // Sıcaklık aralığına göre ikon seçimi
-        if (maxTemperature >= 25) {
-          return "src/images/icons/sun.png"; // 25 dereceden büyükse güneş ikonu
-        } else if (maxTemperature >= 20 && maxTemperature < 25) {
-          return "src/images/icons/sun-little-cloud.png"; // 20-25 arasıysa bulutlu güneş ikonu
-        } else {
-          return "src/images/icons/cloud.png"; // Diğer durumlar için bulut ikonu
+    const nightIcons = [
+      "src/images/icons/night-sun.png",
+      "src/images/icons/night-clouds.png",
+      "src/images/icons/night-cloud.png",
+      "src/images/icons/night-rain.png",
+      "src/images/icons/snow.png",
+    ];
+
+    const icons = [];
+
+    // 5 günlük hava durumu verilerini döngü ile kontrol et
+    for (let i = 0; i < 5; i++) {
+      const weatherDescription = weatherData.list[i].weather[0].description;
+      const currentHour = new Date(weatherData.list[i]).getHours();
+      const isNight = currentHour < 6 || currentHour >= 20;
+
+      let iconPath = "src/images/icons/sun-little-cloud.png"; // Varsayılan simge
+
+      if (isNight) {
+        // Gece için simgeler
+        if (weatherDescription.includes("clear sky")) {
+          iconPath = nightIcons[0];
+        } else if (weatherDescription.includes("few clouds")) {
+          iconPath = nightIcons[1];
+        } else if (weatherDescription.includes("scattered clouds")) {
+          iconPath = nightIcons[2];
+        } else if (weatherDescription.includes("rain")) {
+          iconPath = nightIcons[3];
+        } else if (weatherDescription.includes("snow")) {
+          iconPath = nightIcons[4];
         }
-      } else if (lowerDescription.includes("scattered clouds")) {
-        return "src/images/icons/cloud-sun.png";
-      } else if (lowerDescription.includes("broken clouds")) {
-        return "src/images/icons/cloud-sun.png";
-      } else if (lowerDescription.includes("overcast clouds")) {
-        return "src/images/icons/sun-little-cloud.png";
-      } else if (lowerDescription.includes("rain")) {
-        return "src/images/icons/rain.png";
-      } else if (lowerDescription.includes("heavy rain")) {
-        return "src/images/icons/rain.png";
-      } else if (lowerDescription.includes("thunderstorm")) {
-        return "src/images/icons/Thunder.png";
-      } else if (lowerDescription.includes("snow")) {
-        return "src/images/icons/Lsnow.png";
-      } else if (lowerDescription.includes("light rain")) {
-        return "src/images/icons/rain.png";
-      } else if (lowerDescription.includes("shower rain")) {
-        return "src/images/icons/rain";
-      } else if (lowerDescription.includes("moderate rain")) {
-        return "src/images/icons/rain-sun.png";
-      } else if (lowerDescription.includes("heavy shower rain")) {
-        return "src/images/icons/rain-sun.png";
-      } else if (lowerDescription.includes("thunderstorm with heavy rain")) {
-        return "src/images/icons/Turnado.png";
-      } else if (lowerDescription.includes("cold")) {
-        return "src/images/icons/Lsnow.png";
       } else {
-        return "src/images/icons/sun.png"; // Diğer durumlar için varsayılan gündüz ikonu
+        // Gündüz için simgeler
+        if (weatherDescription.includes("clear sky")) {
+          iconPath = dayIcons[0];
+        } else if (weatherDescription.includes("few clouds")) {
+          iconPath = dayIcons[1];
+        } else if (weatherDescription.includes("scattered clouds")) {
+          iconPath = dayIcons[2];
+        } else if (weatherDescription.includes("rain")) {
+          iconPath = dayIcons[3];
+        } else if (weatherDescription.includes("snow")) {
+          iconPath = dayIcons[4];
+        }
       }
+
+      // İkon ve hava durumu açıklamasını bir nesne olarak ekle
+      icons.push({ iconPath, weatherDescription });
     }
+
+    return icons;
   };
 
-  // Weather verileri ve ikon yolunu almak için kullanım
-  const currentHour = new Date().getHours();
-  const isNight = currentHour < 6 || currentHour >= 20;
-  const minTemperature = weatherData.list[0].main.temp_min;
-  const maxTemperature = weatherData.list[0].main.temp_max;
-  const weatherDescription = weatherData.list[0].weather[0].description;
-
-  const iconPath = getWeatherIcon(
-    isNight,
-    weatherDescription,
-    minTemperature,
-    maxTemperature
-  );
+  // Örnek kullanım: 5 günlük hava durumu verilerinden ikonları almak
+  const weatherIcons = getWeatherIconsForFiveDays(weatherData);
+  console.log(weatherIcons);
 
   const daysOfWeek = [
     "Sunday",
@@ -195,7 +159,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-80 h-80 mt-20 ml-40    ">
                   <img
                     className="w-[130px]   animate-spin-pulse ease-in-out"
-                    src={iconPath}
+                    src={weatherIcons[0].iconPath} // İlk gün için ikon yolunu al
                     alt=""
                   />
                 </div>
@@ -267,7 +231,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className="animate-spin-pulse ease-in-out"
-                    src={iconPath}
+                    src={weatherIcons[1].iconPath} // İlk gün için ikon yolunu al
                     alt=""
                   />
                 </div>
@@ -287,7 +251,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className="animate-spin-pulse ease-in-out"
-                    src={iconPath}
+                    src={weatherIcons[0].iconPath} // İlk gün için ikon yolunu al
                     alt=""
                   />
                 </div>
@@ -307,7 +271,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className="animate-spin-pulse ease-in-out"
-                    src={iconPath}
+                    src={weatherIcons[2].iconPath} // İlk gün için ikon yolunu al
                     alt=""
                   />
                 </div>
@@ -328,7 +292,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className=" animate-spin-pulse ease-in-out"
-                    src={iconPath}
+                    src={weatherIcons[3].iconPath} // İlk gün için ikon yolunu al
                     alt=""
                   />
                 </div>
@@ -348,7 +312,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className=" animate-spin-pulse ease-in-out"
-                    src={iconPath}
+                    src={weatherIcons[4].iconPath} // İlk gün için ikon yolunu al
                     alt=""
                   />
                 </div>
