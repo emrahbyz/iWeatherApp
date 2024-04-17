@@ -13,29 +13,46 @@ const ForecastWeather = ({ weatherData }) => {
     return <p>Yükleniyor...</p>;
   }
 
-  const getWeatherIcon = (isNight, weatherDescription) => {
+  const getWeatherIcon = (
+    isNight,
+    weatherDescription,
+    minTemperature,
+    maxTemperature
+  ) => {
     const lowerDescription = weatherDescription.toLowerCase();
 
     if (isNight) {
       // Gece için ikonlar
       if (lowerDescription.includes("clear sky")) {
-        return "src/images/icons/sun.png"; // Açık hava için ikon
+        return "src/images/icons/sun.png";
       } else if (lowerDescription.includes("few clouds")) {
-        return "src/images/icons/rain.png"; // Bulutlu hava için ikon
+        return "src/images/icons/icon2.png";
       } else if (lowerDescription.includes("scattered clouds")) {
-        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+        return "src/images/icons/night-clouds.png";
       } else if (lowerDescription.includes("broken clouds")) {
-        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+        return "src/images/icons/night-cloud.png";
       } else if (lowerDescription.includes("overcast clouds")) {
-        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+        return "src/images/icons/sun-little-cloud.png";
       } else if (lowerDescription.includes("rain")) {
-        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+        return "src/images/icons/night-rain.png";
       } else if (lowerDescription.includes("heavy rain")) {
-        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+        return "src/images/icons/night-rain.png";
       } else if (lowerDescription.includes("thunderstorm")) {
-        return "src/images/icons/rainy.png"; // Yağmurlu hava için ikon
+        return "src/images/icons/Thunder.png";
+      } else if (lowerDescription.includes("snow")) {
+        return "src/images/icons/Lsnow.png";
       } else if (lowerDescription.includes("light rain")) {
-        return "src/images/icons/rain-sun.png"; // Yağmurlu hava için ikon
+        return "src/images/icons/rain.png";
+      } else if (lowerDescription.includes("shower rain")) {
+        return "src/images/icons/rain.png";
+      } else if (lowerDescription.includes("moderate rain")) {
+        return "src/images/icons/rain-sun.png";
+      } else if (lowerDescription.includes("heavy shower rain")) {
+        return "src/images/icons/rain-sun.png";
+      } else if (lowerDescription.includes("thunderstorm with heavy rain")) {
+        return "src/images/icons/Turnado.png";
+      } else if (lowerDescription.includes("cold")) {
+        return "src/images/icons/Lsnow.png";
       } else {
         return "src/images/icons/sun.png"; // Diğer durumlar için varsayılan gündüz ikonu
       }
@@ -44,7 +61,14 @@ const ForecastWeather = ({ weatherData }) => {
       if (lowerDescription.includes("clear sky")) {
         return "src/images/icons/sun.png";
       } else if (lowerDescription.includes("few clouds")) {
-        return "src/images/icons/sun-little-cloud.png";
+        // Sıcaklık aralığına göre ikon seçimi
+        if (maxTemperature >= 25) {
+          return "src/images/icons/sun.png"; // 25 dereceden büyükse güneş ikonu
+        } else if (maxTemperature >= 20 && maxTemperature < 25) {
+          return "src/images/icons/sun-little-cloud.png"; // 20-25 arasıysa bulutlu güneş ikonu
+        } else {
+          return "src/images/icons/cloud.png"; // Diğer durumlar için bulut ikonu
+        }
       } else if (lowerDescription.includes("scattered clouds")) {
         return "src/images/icons/cloud-sun.png";
       } else if (lowerDescription.includes("broken clouds")) {
@@ -79,10 +103,17 @@ const ForecastWeather = ({ weatherData }) => {
 
   // Weather verileri ve ikon yolunu almak için kullanım
   const currentHour = new Date().getHours();
-  const isNight = currentHour < 6 || currentHour >= 18;
+  const isNight = currentHour < 6 || currentHour >= 20;
+  const minTemperature = weatherData.list[0].main.temp_min;
+  const maxTemperature = weatherData.list[0].main.temp_max;
   const weatherDescription = weatherData.list[0].weather[0].description;
 
-  const iconPath = getWeatherIcon(isNight, weatherDescription);
+  const iconPath = getWeatherIcon(
+    isNight,
+    weatherDescription,
+    minTemperature,
+    maxTemperature
+  );
 
   const daysOfWeek = [
     "Sunday",
@@ -236,7 +267,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className="animate-spin-pulse ease-in-out"
-                    src="src/images/icons/sun clouds-1.png"
+                    src={iconPath}
                     alt=""
                   />
                 </div>
@@ -256,7 +287,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className="animate-spin-pulse ease-in-out"
-                    src="src/images/icons/sun clouds.png"
+                    src={iconPath}
                     alt=""
                   />
                 </div>
@@ -276,7 +307,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className="animate-spin-pulse ease-in-out"
-                    src="src/images/icons/Moon.png"
+                    src={iconPath}
                     alt=""
                   />
                 </div>
@@ -297,7 +328,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className=" animate-spin-pulse ease-in-out"
-                    src="src/images/icons/Thunder.png"
+                    src={iconPath}
                     alt=""
                   />
                 </div>
@@ -317,7 +348,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className=" animate-spin-pulse ease-in-out"
-                    src="src/images/icons/Group 8.png"
+                    src={iconPath}
                     alt=""
                   />
                 </div>
