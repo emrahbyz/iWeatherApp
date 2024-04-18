@@ -14,7 +14,7 @@ const EventDetails = ({ selectedCity }) => {
           params: {
             latitude: selectedCity.latitude,
             longitude: selectedCity.longitude,
-            limit: "50",
+            limit: "6",
             distance: "2",
           },
           headers: {

@@ -10,8 +10,8 @@ import EventDetails from "./EventDetails";
 const Home = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState("");
-  const [weather, setWeather] = useState();
-  const [uvData, setUvData] = useState();
+  const [weather, setWeather] = useState(null);
+  const [uvData, setUvData] = useState(null);
   const { latitude, longitude } = usePosition();
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState(null);
@@ -26,11 +26,21 @@ const Home = () => {
       setWeather(data);
     } catch (error) {
       console.log(error);
+      console.log("Hava Durumu Verisi Alınamadı:", error);
     }
   };
-  const handleCitySelect = (city) => {
-    setSelectedCity(city);
+
+  const handleCitySelect = (selectedOption) => {
+    if (selectedOption) {
+      const selectedCityName = selectedOption.label.split("-")[0].trim();
+      setSelectedCity({
+        name: selectedCityName,
+        latitude: selectedOption.value.split(" ")[0],
+        longitude: selectedOption.value.split(" ")[1],
+      });
+    }
   };
+
   const loadOptions = debounce(async (inputValue, callback) => {
     setLoading(true);
     try {
@@ -88,11 +98,17 @@ const Home = () => {
         `https://api.openweathermap.org/data/2.5/forecast?q=${selectedCity}&appid=${key}&units=metric`
       );
       setWeatherData(data);
-      setSelectedCity(selectedCity); // Seçilen şehri set et
+      setSelectedCity({
+        name: "Istanbul",
+        latitude,
+        longitude,
+      });
     } catch (error) {
       console.log(error.message);
       if (error.response.status === 404) {
         alert("Lütfen geçerli bir şehir adı girin.");
+      } else {
+        alert("Hava durumu verileri alınamadı.");
       }
     }
     setLoading(false);
@@ -102,23 +118,21 @@ const Home = () => {
     if (latitude && longitude) {
       getWeatherData(latitude, longitude);
       getUvData(latitude, longitude);
-      setSelectedCity({
-        name: "Istanbul",
-        latitude,
-        longitude,
-      });
     }
     fetchData();
   }, [latitude, longitude]);
 
   const handleLocationChange = async (selectedOption) => {
     if (selectedOption) {
-      const selectedCity = selectedOption.label.split("-")[0].trim();
-      setCity(selectedCity);
+      const selectedCityName = selectedOption.label.split("-")[0].trim();
+      setCity(selectedCityName);
 
       try {
-        await fetchData(selectedCity);
-      } catch (error) {}
+        await fetchData(selectedCityName);
+        handleCitySelect(selectedOption);
+      } catch (error) {
+        console.error("Veri alınamadı:", error);
+      }
     }
   };
 
@@ -133,15 +147,15 @@ const Home = () => {
         })`,
       }}
     >
-      <div className=" mt-[36px]  opacity-80   ">
-        <div className="flex items-center justify-center gap-2   ">
+      <div className="mt-[36px] opacity-80">
+        <div className="flex items-center justify-center gap-2">
           <img className="w-[65px]" src="src/images/icons/Vector.png" alt="" />
-          <p className="text-5xl">iWeather </p>
+          <p className="text-5xl">iWeather</p>
         </div>
       </div>
       {(!latitude || !longitude) && (
-        <div className="flex flex-col items-center   justify-center mt-52 gap-2">
-          <p className="text-2xl font-bold ">
+        <div className="flex flex-col items-center justify-center mt-52 gap-2">
+          <p className="text-2xl font-bold">
             Welcome to <span className="text-blue-light">TypeWeather</span>
           </p>
           <p className="text-xl text-gray-300 font-normal">
@@ -158,12 +172,11 @@ const Home = () => {
                 isLoading={loading}
               />
             </div>
-
             {loading && (
               <div className="spinner absolute mr-5">
                 <img
                   src="src/images/img/12.png"
-                  className="w-[32px] h-[32px] animate-spin animate-infinite "
+                  className="w-[32px] h-[32px] animate-spin animate-infinite"
                   alt=""
                 />
               </div>
@@ -179,7 +192,7 @@ const Home = () => {
       </div>
 
       {latitude && longitude && (
-        <div className="flex items-center absolute right-0 mr-16 justify-end mt-8  ">
+        <div className="flex items-center absolute right-0 mr-16 justify-end mt-8">
           <div>
             <AsyncSelect
               className="select"
@@ -191,19 +204,13 @@ const Home = () => {
               isLoading={loading}
             />
           </div>
-
           {loading && (
             <div className="spinner absolute mr-5">
               <img
                 src="src/images/img/12.png"
-                className="w-[32px] h-[32px] animate-spin animate-infinite "
+                className="w-[32px] h-[32px] animate-spin animate-infinite"
                 alt=""
               />
-              (
-              <div className="city-details">
-                <h2>City: {selectedCity.name}</h2>
-              </div>
-              )
             </div>
           )}
         </div>
