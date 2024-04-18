@@ -5,17 +5,17 @@ import Weather from "./Weather";
 import debounce from "debounce-promise";
 import ForecastWeather from "./ForecastWeather";
 import AsyncSelect from "react-select/async";
+import EventDetails from "./EventDetails";
 
 const Home = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState();
   const [uvData, setUvData] = useState();
-
   const { latitude, longitude } = usePosition();
-
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
 
   const getWeatherData = async (lat, lon) => {
     const key = import.meta.env.VITE_WEATHER_API;
@@ -28,7 +28,9 @@ const Home = () => {
       console.log(error);
     }
   };
-
+  const handleCitySelect = (city) => {
+    setSelectedCity(city);
+  };
   const loadOptions = debounce(async (inputValue, callback) => {
     setLoading(true);
     try {
@@ -43,25 +45,19 @@ const Home = () => {
         }
       );
 
-      const options = response.data.data.map((city) => {
-        const name = city.name || "Şehir İsmi";
-        `-`;
-        const countryCode = city.countryCode || "Ülke Kodu";
+      const options = response.data.data.map((city) => ({
+        value: `${city.latitude} ${city.longitude}`,
+        label: `${city.name || "Şehir İsmi"} - ${
+          city.countryCode || "Ülke Kodu"
+        }`,
+      }));
 
-        return {
-          value: `${city.latitude} ${city.longitude}`,
-
-          label: `${city.name || "Şehir İsmi"}
-          - ${city.countryCode || "Ülke Kodu"}`,
-        };
-      });
-
-      callback(options); // Seçenekleri geri çağır
+      callback(options);
     } catch (error) {
       console.error("Şehir veri alırken hata oluştu:", error);
-      callback([]); // Daha fazla yüklemeyi engellemek için boş bir dizi döndürün
+      callback([]);
     }
-    setLoading(false); // İstek tamamlandığında yükleme durumunu false yapın
+    setLoading(false);
   }, 400);
 
   const getUvData = async (lat, lon) => {
@@ -92,6 +88,7 @@ const Home = () => {
         `https://api.openweathermap.org/data/2.5/forecast?q=${selectedCity}&appid=${key}&units=metric`
       );
       setWeatherData(data);
+      setSelectedCity(selectedCity); // Seçilen şehri set et
     } catch (error) {
       console.log(error.message);
       if (error.response.status === 404) {
@@ -105,6 +102,11 @@ const Home = () => {
     if (latitude && longitude) {
       getWeatherData(latitude, longitude);
       getUvData(latitude, longitude);
+      setSelectedCity({
+        name: "Istanbul",
+        latitude,
+        longitude,
+      });
     }
     fetchData();
   }, [latitude, longitude]);
@@ -173,6 +175,7 @@ const Home = () => {
       <div>
         <Weather weather={weather} uvData={uvData} weatherData={weatherData} />
         <ForecastWeather weatherData={weatherData} />
+        <EventDetails selectedCity={selectedCity} />
       </div>
 
       {latitude && longitude && (
@@ -196,6 +199,11 @@ const Home = () => {
                 className="w-[32px] h-[32px] animate-spin animate-infinite "
                 alt=""
               />
+              (
+              <div className="city-details">
+                <h2>City: {selectedCity.name}</h2>
+              </div>
+              )
             </div>
           )}
         </div>
