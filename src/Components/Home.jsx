@@ -118,6 +118,11 @@ const Home = () => {
     if (latitude && longitude) {
       getWeatherData(latitude, longitude);
       getUvData(latitude, longitude);
+      setSelectedCity({
+        name: "Istanbul",
+        latitude,
+        longitude,
+      });
     }
     fetchData();
   }, [latitude, longitude]);

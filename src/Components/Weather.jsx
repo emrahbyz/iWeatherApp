@@ -133,7 +133,8 @@ const Weather = ({ weather, uvData, weatherData }) => {
             >
               <div className="w-[295px] h-[41px] mt-5 ml-5 flex gap-[2px] flex-col  ">
                 <p className="font-bold  text-[16px]">
-                  {weather.city.name},<span> {weather.city.country}</span>
+                  {capitalizeFirstLetter(weather.city.name)},
+                  <span> {weather.city.country}</span>
                 </p>
 
                 <p className="text-xs font-normal">
