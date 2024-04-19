@@ -68,7 +68,7 @@ const Home = () => {
       callback([]);
     }
     setLoading(false);
-  }, 400);
+  }, 450);
 
   const getUvData = async (lat, lon) => {
     const key = import.meta.env.VITE_WEATHER_API_1;
@@ -143,7 +143,7 @@ const Home = () => {
 
   return (
     <div
-      className={`text-white flex-col w-full h-[100vh] bg-cover bg-center flex ${
+      className={`text-white flex-col w-full h-[100vh] bg-cover bg-center  flex ${
         latitude && longitude ? "bg-gray-900" : ""
       }`}
       style={{
@@ -158,8 +158,9 @@ const Home = () => {
           <p className="text-5xl">iWeather</p>
         </div>
       </div>
-      {(!latitude || !longitude) && (
-        <div className="flex flex-col items-center justify-center mt-52 gap-2">
+
+      {!selectedCity && (!latitude || !longitude) && (
+        <div className="flex flex-col items-center justify-center mt-28 gap-2">
           <p className="text-2xl font-bold">
             Welcome to <span className="text-blue-light">TypeWeather</span>
           </p>
@@ -190,13 +191,13 @@ const Home = () => {
         </div>
       )}
 
-      <div>
+      <div className="">
         <Weather weather={weather} uvData={uvData} weatherData={weatherData} />
         <ForecastWeather weatherData={weatherData} />
         <EventDetails selectedCity={selectedCity} />
       </div>
 
-      {latitude && longitude && (
+      {(selectedCity || (latitude && longitude)) && (
         <div className="flex items-center absolute right-0 mr-16 justify-end mt-8">
           <div>
             <AsyncSelect

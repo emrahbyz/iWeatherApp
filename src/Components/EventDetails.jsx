@@ -14,12 +14,12 @@ const EventDetails = ({ selectedCity }) => {
           params: {
             latitude: selectedCity.latitude,
             longitude: selectedCity.longitude,
-            limit: "6",
+            limit: "9",
             distance: "2",
           },
           headers: {
             "X-RapidAPI-Key":
-              "b9d966832emshc05489e89f6a47bp18669bjsn2e32fecf6cfc",
+              "2fdcdddb83mshb7c21400a84c70ap18be01jsn79b37922fc61",
             "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
           },
         };
@@ -44,13 +44,16 @@ const EventDetails = ({ selectedCity }) => {
   }, [selectedCity]);
 
   return (
-    <div>
+    <div className=" absolute bottom-[750px] left-[650px] right-0">
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 text-blue-light">
+        <div className="grid grid-cols-3 gap-5  text-blue-light mb-72 absolute">
           {restaurants.map((restaurant, index) => (
-            <div key={index}>
+            <div
+              key={index}
+              className="flex font-bold h-[220px] flex-col gap-2 py-1 px-4 rounded-xl w-[280px] bg-gray-800"
+            >
               <h3 className="font-bold">{restaurant.name}</h3>
               <p>
                 <span className="text-slate-500">Address:</span>
