@@ -15,7 +15,7 @@ const EventDetails = ({ selectedCity }) => {
             latitude: selectedCity.latitude,
             longitude: selectedCity.longitude,
             limit: "9",
-            distance: "2",
+            distance: "50",
           },
           headers: {
             "X-RapidAPI-Key":
@@ -44,47 +44,31 @@ const EventDetails = ({ selectedCity }) => {
   }, [selectedCity]);
 
   return (
-    <div className=" absolute bottom-[750px] left-[650px] right-0">
+    <div className=" relative bottom-[840px] left-[650px] ">
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="grid grid-cols-3 gap-5  text-blue-light mb-72 absolute">
+        <div className="grid grid-cols-3 gap-5  text-blue-light  absolute">
           {restaurants.map((restaurant, index) => (
             <div
               key={index}
-              className="flex font-bold h-[220px] flex-col gap-2 py-1 px-4 rounded-xl w-[280px] bg-gray-800"
+              className="flex font-bold h-[250px] flex-col gap-2   py-1 px-4 rounded-xl w-[290px] bg-gray-800"
             >
+              <img
+                className="h-[235px] w-[260px] absolute "
+                src={
+                  restaurant.photo?.images?.large?.url ||
+                  "src/images/icons/food.avif"
+                }
+                alt=""
+              />
               <h3 className="font-bold">{restaurant.name}</h3>
-              <p>
-                <span className="text-slate-500">Address:</span>
-                <span className="float-right">
-                  {restaurant.address || "Not available"}
-                </span>
-              </p>
-              <p>
-                <span className="text-slate-500">Phone:</span>
-                <a
-                  href={`tel:${restaurant.phone}`}
-                  className="float-right text-blue-400"
-                >
-                  {restaurant.phone || "Not available"}
-                </a>
-              </p>
+
               <p>
                 <span className="text-slate-500">Rating:</span>
                 <span className="float-right">
                   {restaurant.rating || "Not available"}
                 </span>
-              </p>
-              <p>
-                <a
-                  href={restaurant.website}
-                  className="text-blue-400"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Website
-                </a>
               </p>
             </div>
           ))}
