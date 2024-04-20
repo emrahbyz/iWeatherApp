@@ -8,7 +8,7 @@ const EventDetails = ({ selectedCity }) => {
 
   useEffect(() => {
     const fetchRestaurants = async () => {
-      const key = import.meta.env.VITE_WEATHER_API_3;
+      const key = "36f9fc57d9mshdbeaddb57f8082ep1eedb6jsn712906af7423";
       if (selectedCity && selectedCity.latitude && selectedCity.longitude) {
         const options = {
           method: "GET",

@@ -19,7 +19,7 @@ const Home = () => {
   const [selectedCity, setSelectedCity] = useState(null);
 
   const getWeatherData = async (lat, lon) => {
-    const key = import.meta.env.VITE_WEATHER_API;
+    const key = "d16e0fdb04c783725d72d62dbcf2cdeb";
     try {
       const { data } = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
@@ -71,7 +71,7 @@ const Home = () => {
   }, 450);
 
   const getUvData = async (lat, lon) => {
-    const key = import.meta.env.VITE_WEATHER_API_1;
+    const key = "2aa0acfd5af988d38859e9da0d1a82b3";
 
     try {
       const { data } = await axios.get(
@@ -91,7 +91,7 @@ const Home = () => {
     }
 
     setLoading(true);
-    const key = import.meta.env.VITE_WEATHER_API_2;
+    const key = "a20fe70bfed32fb8b78981b8e25b5027";
 
     try {
       const { data } = await axios.get(
