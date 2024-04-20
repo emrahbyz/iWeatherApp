@@ -121,7 +121,7 @@ const Weather = ({ weather, uvData, weatherData }) => {
         size: 24,
       }}
     >
-      <div className="w-[1340px] mt-6 h-[840px] flex flex-col mx-auto   items-start bg-gray-500 ">
+      <div className="w-[1340px] mt-6 h-[840px] flex flex-col mx-auto   items-start  ">
         <div className="grid  grid-row-2 gap-2">
           <div className="bg-gray-800 flex items-center rounded-xl justify-center p-1 w-[359px] h-[328px]   ">
             <div

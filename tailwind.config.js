@@ -22,6 +22,7 @@ export default {
       "gray-1000": "#1E1E29",
       "gray-1100": "#FAFAFA",
       white: "#FFFFFF",
+      red: "#FF2400",
     },
   },
   plugins: [],

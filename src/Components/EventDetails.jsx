@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { LiaStarSolid } from "react-icons/lia";
 
 const EventDetails = ({ selectedCity }) => {
   const [restaurants, setRestaurants] = useState([]);
@@ -44,32 +45,39 @@ const EventDetails = ({ selectedCity }) => {
   }, [selectedCity]);
 
   return (
-    <div className=" relative bottom-[840px] left-[650px] ">
+    <div className=" relative bottom-[830px] left-[650px] ">
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="grid grid-cols-3 gap-5  text-blue-light  absolute">
+        <div className="grid grid-cols-3 gap-5  text-white absolute  ">
           {restaurants.map((restaurant, index) => (
             <div
               key={index}
-              className="flex font-bold h-[250px] flex-col gap-2   py-1 px-4 rounded-xl w-[290px] bg-gray-800"
+              className="flex font-bold h-[270px] flex-col gap-2  py-1 px-4 w-[350px] rounded-xl bg-gray-800"
             >
               <img
-                className="h-[235px] w-[260px] absolute "
+                className="h-[210px] w-[350px]  rounded-xl  "
                 src={
                   restaurant.photo?.images?.large?.url ||
-                  "src/images/icons/food.avif"
+                  "src/images/icons/burger2.webp"
                 }
                 alt=""
               />
-              <h3 className="font-bold">{restaurant.name}</h3>
 
-              <p>
-                <span className="text-slate-500">Rating:</span>
-                <span className="float-right">
-                  {restaurant.rating || "Not available"}
-                </span>
-              </p>
+              <div className="h-[64px]">
+                <div>
+                  <h3 className="font-bold absolute">{restaurant.name}</h3>
+                </div>
+
+                <div className="flex items-center gap-2 justify-end mb-6  ">
+                  <p className="">
+                    <LiaStarSolid className="text-red" />
+                  </p>
+
+                  <p className=""> {restaurant.rating}</p>
+                </div>
+                <div className="">{restaurant.phone}</div>
+              </div>
             </div>
           ))}
         </div>
