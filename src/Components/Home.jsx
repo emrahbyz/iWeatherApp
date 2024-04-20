@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { usePosition } from "use-position";
+import { useGeolocated } from "react-geolocated";
 import Weather from "./Weather";
 import debounce from "debounce-promise";
 import ForecastWeather from "./ForecastWeather";
@@ -12,7 +12,8 @@ const Home = () => {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [uvData, setUvData] = useState(null);
-  const { latitude, longitude } = usePosition();
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+    useGeolocated();
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
@@ -25,7 +26,6 @@ const Home = () => {
       );
       setWeather(data);
     } catch (error) {
-      console.log(error);
       console.log("Hava Durumu Verisi Alınamadı:", error);
     }
   };
@@ -85,8 +85,8 @@ const Home = () => {
     }
   };
 
-  const fetchData = async (selectedCity) => {
-    if (!selectedCity || selectedCity.trim() === "") {
+  const fetchData = async (selectedCityName) => {
+    if (!selectedCityName || selectedCityName.trim() === "") {
       return;
     }
 
@@ -95,17 +95,17 @@ const Home = () => {
 
     try {
       const { data } = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${selectedCity}&appid=${key}&units=metric`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${selectedCityName}&appid=${key}&units=metric`
       );
       setWeatherData(data);
       setSelectedCity({
-        name: "Istanbul",
-        latitude,
-        longitude,
+        name: selectedCityName,
+        latitude: coords.latitude,
+        longitude: coords.longitude,
       });
     } catch (error) {
       console.log(error.message);
-      if (error.response.status === 404) {
+      if (error.response && error.response.status === 404) {
         alert("Lütfen geçerli bir şehir adı girin.");
       } else {
         alert("Hava durumu verileri alınamadı.");
@@ -115,17 +115,17 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (latitude && longitude) {
-      getWeatherData(latitude, longitude);
-      getUvData(latitude, longitude);
+    if (isGeolocationAvailable && isGeolocationEnabled && coords) {
+      getWeatherData(coords.latitude, coords.longitude);
+      getUvData(coords.latitude, coords.longitude);
       setSelectedCity({
-        name: "Istanbul",
-        latitude,
-        longitude,
+        name: "Istanbul", // Varsayılan olarak İstanbul seçildi
+        latitude: coords.latitude,
+        longitude: coords.longitude,
       });
     }
     fetchData();
-  }, [latitude, longitude]);
+  }, [isGeolocationAvailable, isGeolocationEnabled, coords]);
 
   const handleLocationChange = async (selectedOption) => {
     if (selectedOption) {
@@ -143,63 +143,62 @@ const Home = () => {
 
   return (
     <div
-      className={`text-white flex-col w-full h-[100vh] bg-cover bg-center   flex ${
-        latitude && longitude ? "bg-gray-900" : ""
+      className={`text-white flex-col w-full h-[100vh] bg-cover bg-center flex ${
+        coords ? "bg-gray-900" : ""
       }`}
       style={{
-        backgroundImage: `url(${
-          latitude && longitude ? "" : "src/images/img/img11.png"
-        })`,
+        backgroundImage: `url(${coords ? "" : "src/images/img/img11.png"})`,
       }}
     >
       <div className="mt-[36px] opacity-80">
-        <div className="flex items-center justify-center  gap-2">
+        <div className="flex items-center justify-center gap-2">
           <img className="w-[65px]" src="src/images/icons/Vector.png" alt="" />
-          <p className="text-3xl lg:text-4xl  xl:text-5xl">iWeather</p>
+          <p className="text-3xl lg:text-4xl xl:text-5xl">iWeather</p>
         </div>
       </div>
 
-      {!selectedCity && (!latitude || !longitude) && (
-        <div className="flex flex-col items-center justify-center mt-28 gap-2">
-          <p className="text-text-base font-bold md:text-2xl   ">
-            Welcome to <span className="text-blue-light  ">TypeWeather</span>
-          </p>
-          <p className=" text-base  md:text-xl  text-gray-300 font-normal">
-            Choose a location to see the weather forecast
-          </p>
-          <div className="flex items-center  justify-end mt-8 ">
-            <div>
-              <AsyncSelect
-                debounceTimeout={1000}
-                loadOptions={loadOptions}
-                placeholder="Search location"
-                onChange={handleLocationChange}
-                value={search}
-                isLoading={loading}
-              />
-            </div>
-            {loading && (
-              <div className="spinner absolute mr-5">
-                <img
-                  src="src/images/img/12.png"
-                  className="w-[32px] h-[32px] animate-spin animate-infinite"
-                  alt=""
+      {!selectedCity &&
+        (!coords || (isGeolocationAvailable && !isGeolocationEnabled)) && (
+          <div className="flex flex-col items-center justify-center mt-28 gap-2">
+            <p className="text-text-base font-bold md:text-2xl">
+              Welcome to <span className="text-blue-light">TypeWeather</span>
+            </p>
+            <p className="text-base md:text-xl text-gray-300 font-normal">
+              Choose a location to see the weather forecast
+            </p>
+            <div className="flex items-center justify-end mt-8">
+              <div>
+                <AsyncSelect
+                  debounceTimeout={1000}
+                  loadOptions={loadOptions}
+                  placeholder="Search location"
+                  onChange={handleLocationChange}
+                  value={search}
+                  isLoading={loading}
                 />
               </div>
-            )}
+              {loading && (
+                <div className="spinner absolute mr-5">
+                  <img
+                    src="src/images/img/12.png"
+                    className="w-[32px] h-[32px] animate-spin animate-infinite"
+                    alt=""
+                  />
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div className="">
+      <div>
         <Weather weather={weather} uvData={uvData} weatherData={weatherData} />
         <ForecastWeather weatherData={weatherData} />
         <EventDetails selectedCity={selectedCity} />
       </div>
 
-      {(selectedCity || (latitude && longitude)) && (
-        <div className="flex items-center absolute right-0 p-4  mr-4 xl:mr-16 justify-end   mt-[68px] 2xl:mt-8">
-          <div className="w-[300px] sm:w-[330px]  ">
+      {(selectedCity || coords) && (
+        <div className="flex items-center absolute right-0 p-4 mr-4 xl:mr-16 justify-end mt-[68px] 2xl:mt-8">
+          <div className="w-[300px] sm:w-[330px]">
             <AsyncSelect
               className="select"
               debounceTimeout={1000}
