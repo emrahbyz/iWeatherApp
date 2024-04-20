@@ -167,7 +167,7 @@ const Home = () => {
           <p className=" text-base  md:text-xl  text-gray-300 font-normal">
             Choose a location to see the weather forecast
           </p>
-          <div className="flex items-center  justify-end mt-8">
+          <div className="flex items-center  justify-end mt-8 ">
             <div>
               <AsyncSelect
                 debounceTimeout={1000}
@@ -198,7 +198,7 @@ const Home = () => {
       </div>
 
       {(selectedCity || (latitude && longitude)) && (
-        <div className="flex items-center absolute  right-0 p-4 z-10 mr-4 xl:mr-16 justify-end   mt-20 2xl:mt-8">
+        <div className="flex items-center absolute  right-0 p-4  mr-4 xl:mr-16 justify-end   mt-[68px] 2xl:mt-8">
           <div className="w-[300px] sm:w-[330px]   ">
             <AsyncSelect
               className="select"

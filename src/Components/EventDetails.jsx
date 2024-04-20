@@ -8,6 +8,7 @@ const EventDetails = ({ selectedCity }) => {
 
   useEffect(() => {
     const fetchRestaurants = async () => {
+      const key = import.meta.env.VITE_WEATHER_API_3;
       if (selectedCity && selectedCity.latitude && selectedCity.longitude) {
         const options = {
           method: "GET",
@@ -15,12 +16,11 @@ const EventDetails = ({ selectedCity }) => {
           params: {
             latitude: selectedCity.latitude,
             longitude: selectedCity.longitude,
-            limit: "18", // İstediğiniz limiti burada belirleyebilirsiniz
+            limit: "18",
             distance: "100",
           },
           headers: {
-            "X-RapidAPI-Key":
-              "36f9fc57d9mshdbeaddb57f8082ep1eedb6jsn712906af7423",
+            "X-RapidAPI-Key": key,
             "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
           },
         };
@@ -29,7 +29,6 @@ const EventDetails = ({ selectedCity }) => {
           const response = await axios.request(options);
           console.log(response.data);
 
-          // Sadece fotoğrafı olan restoranları filtrele
           const filteredRestaurants = response.data.data.filter(
             (restaurant) => restaurant.photo?.images?.large?.url
           );
