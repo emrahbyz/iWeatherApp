@@ -20,19 +20,19 @@ const Weather = ({ weather, uvData, weatherData }) => {
 
   const getWeatherIconsForFiveDays = (weather) => {
     const dayIcons = [
-      "public/images/icons/sun.png",
-      "public/images/icons/sun-little-cloud.png",
-      "public/images/icons/cloud-sun.png",
-      "public/images/icons/rain.png",
-      "public/images/icons/snow.png",
+      "/images/icons/sun.png",
+      "/images/icons/sun-little-cloud.png",
+      "/images/icons/cloud-sun.png",
+      "/images/icons/rain.png",
+      "/images/icons/snow.png",
     ];
 
     const nightIcons = [
-      "public/images/icons/night-sun.png",
-      "public/images/icons/night-clouds.png",
-      "public/images/icons/night-cloud.png",
-      "public/images/icons/night-rain.png",
-      "public/images/icons/snow.png",
+      "/images/icons/night-sun.png",
+      "/images/icons/night-clouds.png",
+      "/images/icons/night-cloud.png",
+      "/images/icons/night-rain.png",
+      "/images/icons/snow.png",
     ];
 
     const icons = [];
@@ -43,7 +43,7 @@ const Weather = ({ weather, uvData, weatherData }) => {
       const date = new Date(timestamp * 1000); // Unix zaman damgasını milisaniye cinsine çevirerek tarih nesnesi oluştur
       const currentHour = date.getHours();
       const isNight = currentHour < 6 || currentHour >= 20;
-      let iconPath = "public/images/icons/sun-little-cloud.png";
+      let iconPath = "/images/icons/sun-little-cloud.png";
       if (isNight) {
         // Gece için simgeler
         if (weatherDescription.includes("clear sky")) {
