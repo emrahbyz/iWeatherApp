@@ -32,7 +32,6 @@ input::placeholder {
   background-color: #1e1e29 !important;
 }
 #react-select-2-listbox {
-  /* Tüm alt öğeler için stiller */
   background-color: #1e1e29 !important;
 
   padding: 10px !important;
@@ -43,7 +42,6 @@ input::placeholder {
 }
 
 #react-select-3-listbox {
-  /* Tüm alt öğeler için stiller */
   background-color: #1e1e29 !important;
 
   padding: 10px !important;
@@ -133,6 +131,16 @@ input::placeholder {
   border: none;
   border-radius: 8px;
   outline: none;
+}
+@media (max-width: 1280px) {
+  .css-art2ul-ValueContainer2 {
+    width: 360px;
+  }
+}
+@media (max-width: 640px) {
+  .css-art2ul-ValueContainer2 {
+    width: 250px;
+  }
 }
 
 .css-art2ul-ValueContainer2 input::placeholder {

@@ -10,7 +10,15 @@ import {
 
 const ForecastWeather = ({ weatherData }) => {
   if (!weatherData) {
-    return <p>Yükleniyor...</p>;
+    return (
+      <div className="spinner absolute mr-5">
+        <img
+          src="src/images/img/12.png"
+          className="w-[32px] h-[32px] animate-spin animate-infinite"
+          alt=""
+        />
+      </div>
+    );
   }
 
   const getWeatherIconsForFiveDays = (weatherData) => {
@@ -112,11 +120,11 @@ const ForecastWeather = ({ weatherData }) => {
         size: 24,
       }}
     >
-      <div className="w-[1340px] mt-6 h-[840px] flex flex-col mx-auto   items-start  ">
+      <div className="  w-[1340px] mt-16 2xl:mt-6 h-[840px] ml-6 sm:ml-44 md:ml-6 lg:ml-4 xl:ml-48 2xl:ml-64 flex flex-col mx-auto items-start  ">
         <div className="grid  grid-row-2 gap-2">
-          <div className="bg-gray-800 flex items-center rounded-xl justify-center p-1 w-[359px] h-[328px]   ">
+          <div className="bg-gray-800 flex items-center rounded-xl justify-center p-1  w-[330px] h-[280px] sm:w-[359px] sm:h-[328px]   ">
             <div
-              className="w-[335px] h-[304px] rounded-xl relative "
+              className="w-[300px] h-[280px] sm:w-[335px] sm:h-[328px] rounded-xl relative "
               style={{
                 background: "url('src/images/img/img7.png')",
                 backgroundSize: "cover",
@@ -154,7 +162,7 @@ const ForecastWeather = ({ weatherData }) => {
                 </div>
                 <div className="w-80 h-80 mt-20 ml-40    ">
                   <img
-                    className="w-[130px]   animate-spin-pulse ease-in-out"
+                    className="w-[105px] sm:w-[130px]   animate-spin-pulse ease-in-out"
                     src={weatherIcons[0].iconPath}
                     alt=""
                   />
@@ -162,7 +170,7 @@ const ForecastWeather = ({ weatherData }) => {
               </div>
             </div>
           </div>
-          <div className="flex font-bold h-[292px] flex-col gap-2 py-1 px-4 rounded-xl w-[359px] bg-gray-800">
+          <div className="flex font-bold h-[292px] flex-col gap-2 py-1 px-4 rounded-xl  w-[330px] sm:w-[359px] bg-gray-800">
             <div className="">
               <div className="flex justify-between border-b border-b-gray-700 py-4 h-[56px]  ">
                 <div className="flex gap-3 ">
@@ -218,7 +226,7 @@ const ForecastWeather = ({ weatherData }) => {
               </div>
             </div>
           </div>
-          <div className="  flex  h-[176px] w-[359px] rounded-xl bg-gray-800 items-center justify-center">
+          <div className="  flex  h-[176px]  w-[330px] sm:w-[359px] rounded-xl bg-gray-800 items-center justify-center">
             <div className="ml-3 flex">
               <div className="w-[67px] h-[152px]  flex  flex-col  items-center justify-center gap-1">
                 <p className="font-bold text-[14px] text-blue-thin">

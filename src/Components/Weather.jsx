@@ -11,7 +11,7 @@ import {
 
 const Weather = ({ weather, uvData, weatherData }) => {
   if (!weather || !uvData) {
-    return <p>Yükleniyor...</p>;
+    return <p></p>;
   }
 
   if (weather && weatherData) {

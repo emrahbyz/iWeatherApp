@@ -143,7 +143,7 @@ const Home = () => {
 
   return (
     <div
-      className={`text-white flex-col w-full h-[100vh] bg-cover bg-center  flex ${
+      className={`text-white flex-col w-full h-[100vh] bg-cover bg-center   flex ${
         latitude && longitude ? "bg-gray-900" : ""
       }`}
       style={{
@@ -153,21 +153,21 @@ const Home = () => {
       }}
     >
       <div className="mt-[36px] opacity-80">
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-center  gap-2">
           <img className="w-[65px]" src="src/images/icons/Vector.png" alt="" />
-          <p className="text-5xl">iWeather</p>
+          <p className="text-3xl lg:text-4xl  xl:text-5xl">iWeather</p>
         </div>
       </div>
 
       {!selectedCity && (!latitude || !longitude) && (
         <div className="flex flex-col items-center justify-center mt-28 gap-2">
-          <p className="text-2xl font-bold">
-            Welcome to <span className="text-blue-light">TypeWeather</span>
+          <p className="text-text-base font-bold md:text-2xl   ">
+            Welcome to <span className="text-blue-light  ">TypeWeather</span>
           </p>
-          <p className="text-xl text-gray-300 font-normal">
+          <p className=" text-base  md:text-xl  text-gray-300 font-normal">
             Choose a location to see the weather forecast
           </p>
-          <div className="flex items-center justify-end mt-8">
+          <div className="flex items-center  justify-end mt-8">
             <div>
               <AsyncSelect
                 debounceTimeout={1000}
@@ -198,8 +198,8 @@ const Home = () => {
       </div>
 
       {(selectedCity || (latitude && longitude)) && (
-        <div className="flex items-center absolute right-0 mr-16 justify-end mt-8">
-          <div>
+        <div className="flex items-center absolute  right-0 p-4 z-10 mr-4 xl:mr-16 justify-end   mt-20 2xl:mt-8">
+          <div className="w-[300px] sm:w-[330px]   ">
             <AsyncSelect
               className="select"
               debounceTimeout={1000}

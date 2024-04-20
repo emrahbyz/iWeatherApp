@@ -6,3 +6,7 @@
     font-family: "Nunito", system-ui, sans-serif;
   }
 }
+.global-background {
+  @apply bg-cover bg-center fixed inset-0 z-0;
+  background-image: url("src/images/img/img11.png");
+}

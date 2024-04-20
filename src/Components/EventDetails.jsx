@@ -15,12 +15,12 @@ const EventDetails = ({ selectedCity }) => {
           params: {
             latitude: selectedCity.latitude,
             longitude: selectedCity.longitude,
-            limit: "9",
-            distance: "50",
+            limit: "18", // İstediğiniz limiti burada belirleyebilirsiniz
+            distance: "100",
           },
           headers: {
             "X-RapidAPI-Key":
-              "2fdcdddb83mshb7c21400a84c70ap18be01jsn79b37922fc61",
+              "36f9fc57d9mshdbeaddb57f8082ep1eedb6jsn712906af7423",
             "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
           },
         };
@@ -29,9 +29,11 @@ const EventDetails = ({ selectedCity }) => {
           const response = await axios.request(options);
           console.log(response.data);
 
+          // Sadece fotoğrafı olan restoranları filtrele
           const filteredRestaurants = response.data.data.filter(
-            (restaurant) => restaurant.name
+            (restaurant) => restaurant.photo?.images?.large?.url
           );
+
           setRestaurants(filteredRestaurants);
           setLoading(false);
         } catch (error) {
@@ -45,18 +47,18 @@ const EventDetails = ({ selectedCity }) => {
   }, [selectedCity]);
 
   return (
-    <div className=" relative bottom-[830px] left-[650px] ">
+    <div className=" 2xl:relative  xl:relative lg:relative md:relative bottom-[830px] left-[400px]  xl:left-[550px] ml-4 2xl:ml-0 2xl:left-[650px]  ">
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="grid grid-cols-3 gap-5  text-white absolute  ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3  gap-5 text-white  absolute">
           {restaurants.map((restaurant, index) => (
             <div
               key={index}
-              className="flex font-bold h-[270px] flex-col gap-2  py-1 px-4 w-[350px] rounded-xl bg-gray-800"
+              className="flex font-bold h-[270px]  cursor-pointer flex-col gap-2 py-1 px-4 w-[350px] rounded-xl bg-gray-800"
             >
               <img
-                className="h-[210px] w-[350px]  rounded-xl  "
+                className="h-[210px] w-[350px] rounded-md  transition-all duration-500 ease-out transform hover:scale-95"
                 src={
                   restaurant.photo?.images?.large?.url ||
                   "src/images/icons/burger2.webp"
@@ -64,17 +66,17 @@ const EventDetails = ({ selectedCity }) => {
                 alt=""
               />
 
-              <div className="h-[64px]">
+              <div>
                 <div>
                   <h3 className="font-bold absolute">{restaurant.name}</h3>
                 </div>
 
-                <div className="flex items-center gap-2 justify-end mb-6  ">
+                <div className="flex items-center gap-2 justify-end">
                   <p className="">
                     <LiaStarSolid className="text-red" />
                   </p>
 
-                  <p className=""> {restaurant.rating}</p>
+                  <p className="">{restaurant.rating || "Not available"}</p>
                 </div>
                 <div className="">{restaurant.phone}</div>
               </div>
