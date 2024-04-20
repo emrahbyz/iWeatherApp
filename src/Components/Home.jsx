@@ -198,8 +198,8 @@ const Home = () => {
       </div>
 
       {(selectedCity || (latitude && longitude)) && (
-        <div className="flex items-center absolute  right-0 p-4  mr-4 xl:mr-16 justify-end   mt-[68px] 2xl:mt-8">
-          <div className="w-[300px] sm:w-[330px]   ">
+        <div className="flex items-center absolute right-0 p-4  mr-4 xl:mr-16 justify-end   mt-[68px] 2xl:mt-8">
+          <div className="w-[300px] sm:w-[330px]  ">
             <AsyncSelect
               className="select"
               debounceTimeout={1000}
