@@ -10,16 +10,7 @@ import {
 
 const ForecastWeather = ({ weatherData }) => {
   if (!weatherData) {
-    return (
-      <div className="spinner absolute mr-5">
-        <img
-          src="/images/img/12.png"
-          className="w-[32px] h-[32px] animate-spin animate-infinite"
-          alt=""
-        />
-        <p>Loading..</p>
-      </div>
-    );
+    return <p>Loading...</p>;
   }
 
   const getWeatherIconsForFiveDays = (weatherData) => {

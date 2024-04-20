@@ -5,10 +5,7 @@ import "./App.css";
 import "./index.css";
 const App = () => {
   return (
-    <div
-      className="global-background font-nunito  text-white flex-col h-[1100px] overflow-x-hidden  bg-cover bg-center flex"
-      style={{ backgroundImage: "url('/images/img/img11.png')" }}
-    >
+    <div className="global-background font-nunito bg-gray-600  text-white flex-col h-[1100px] overflow-x-hidden  bg-cover bg-center flex">
       <Home />
     </div>
   );
