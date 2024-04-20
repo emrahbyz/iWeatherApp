@@ -17,7 +17,7 @@ const ForecastWeather = ({ weatherData }) => {
           className="w-[32px] h-[32px] animate-spin animate-infinite"
           alt=""
         />
-        <p>Loading...</p>
+        <p>Loading..</p>
       </div>
     );
   }
