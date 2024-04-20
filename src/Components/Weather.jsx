@@ -127,7 +127,7 @@ const Weather = ({ weather, uvData, weatherData }) => {
             <div
               className="w-[300px] h-[280px] sm:w-[335px] sm:h-[328px] rounded-xl relative "
               style={{
-                background: "url('src/images/img/img7.png')",
+                background: "url('/images/img/img7.png')",
                 backgroundSize: "cover",
               }}
             >

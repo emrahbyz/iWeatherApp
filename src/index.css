@@ -8,5 +8,5 @@
 }
 .global-background {
   @apply bg-cover bg-center fixed inset-0 z-0;
-  background-image: url("src/images/img/img11.png");
+  background-image: url("/images/img/img11.png");
 }

@@ -13,7 +13,7 @@ const ForecastWeather = ({ weatherData }) => {
     return (
       <div className="spinner absolute mr-5">
         <img
-          src="src/images/img/12.png"
+          src="/images/img/12.png"
           className="w-[32px] h-[32px] animate-spin animate-infinite"
           alt=""
         />
@@ -24,19 +24,19 @@ const ForecastWeather = ({ weatherData }) => {
 
   const getWeatherIconsForFiveDays = (weatherData) => {
     const dayIcons = [
-      "src/images/icons/sun.png",
-      "src/images/icons/sun-little-cloud.png",
-      "src/images/icons/cloud-sun.png",
-      "src/images/icons/rain.png",
-      "src/images/icons/snow.png",
+      "/images/icons/sun.png",
+      "/images/icons/sun-little-cloud.png",
+      "/images/icons/cloud-sun.png",
+      "/images/icons/rain.png",
+      "/images/icons/snow.png",
     ];
 
     const nightIcons = [
-      "src/images/icons/night-sun.png",
-      "src/images/icons/night-clouds.png",
-      "src/images/icons/night-cloud.png",
-      "src/images/icons/night-rain.png",
-      "src/images/icons/snow.png",
+      "/images/icons/night-sun.png",
+      "/images/icons/night-clouds.png",
+      "/images/icons/night-cloud.png",
+      "/images/icons/night-rain.png",
+      "/images/icons/snow.png",
     ];
 
     const icons = [];
@@ -48,7 +48,7 @@ const ForecastWeather = ({ weatherData }) => {
       const currentHour = date.getHours();
       const isNight = currentHour < 6 || currentHour >= 19;
 
-      let iconPath = "src/images/icons/sun-little-cloud.png";
+      let iconPath = "/images/icons/sun-little-cloud.png";
 
       if (isNight) {
         if (weatherDescription.includes("clear sky")) {
@@ -127,7 +127,7 @@ const ForecastWeather = ({ weatherData }) => {
             <div
               className="w-[300px] h-[280px] sm:w-[335px] sm:h-[328px] rounded-xl relative "
               style={{
-                background: "url('src/images/img/img7.png')",
+                background: "url('/images/img/img7.png')",
                 backgroundSize: "cover",
               }}
             >

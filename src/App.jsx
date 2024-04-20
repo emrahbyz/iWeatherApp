@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div
       className="global-background font-nunito  text-white flex-col h-[1100px] overflow-x-hidden  bg-cover bg-center flex"
-      style={{ backgroundImage: "url('src/images/img/img11.png')" }}
+      style={{ backgroundImage: "url('/images/img/img11.png')" }}
     >
       <Home />
     </div>

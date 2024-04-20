@@ -147,12 +147,12 @@ const Home = () => {
         coords ? "bg-gray-900" : ""
       }`}
       style={{
-        backgroundImage: `url(${coords ? "" : "src/images/img/img11.png"})`,
+        backgroundImage: `url(${coords ? "" : "/images/img/img11.png"})`,
       }}
     >
       <div className="mt-[36px] opacity-80">
         <div className="flex items-center justify-center gap-2">
-          <img className="w-[65px]" src="src/images/icons/Vector.png" alt="" />
+          <img className="w-[65px]" src="/images/icons/Vector.png" alt="" />
           <p className="text-3xl lg:text-4xl xl:text-5xl">iWeather</p>
         </div>
       </div>
@@ -180,7 +180,7 @@ const Home = () => {
               {loading && (
                 <div className="spinner absolute mr-5">
                   <img
-                    src="src/images/img/12.png"
+                    src="/images/img/12.png"
                     className="w-[32px] h-[32px] animate-spin animate-infinite"
                     alt=""
                   />
@@ -212,7 +212,7 @@ const Home = () => {
           {loading && (
             <div className="spinner absolute mr-5">
               <img
-                src="src/images/img/12.png"
+                src="/images/img/12.png"
                 className="w-[32px] h-[32px] animate-spin animate-infinite"
                 alt=""
               />
