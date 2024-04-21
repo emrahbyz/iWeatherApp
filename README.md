@@ -18,22 +18,19 @@
   <summary>İçerik</summary>
   <ol>
     <li>
-      <a href="#about-the-project">Proje Hakkında</a>
+      <a href="#proje-hakkında">Proje Hakkında</a>
       <ul>
-        <li><a href="#built-with">Built</a></li>
+        <li><a href="#ana-özellikler">Ana Özellikler</a></li>
+        <li><a href="#ek-paketler">Ek Paketler</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Başlarken</a>
-      <ul>
-        <li><a href="#prerequisites">ÖnKoşullar</a></li>
-        <li><a href="#installation">Kurulum</a></li>
-      </ul>
+      <a href="#kurulum">Kurulum</a>
     </li>
-    <li><a href="#usage">Kullanım</a></li>
+    <li><a href="#kullanım">Kullanım</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contact">İletişim</a></li>
-    <li><a href="#acknowledgments">Teşekkür</a></li>
+    <li><a href="#iletişim">İletişim</a></li>
+    <li><a href="#teşekkürler">Teşekkür</a></li>
   </ol>
 </details>
 
@@ -119,18 +116,56 @@ Bu projede kullanılan ek paketler ve kütüphaneler:
 Bu işlem, uygulamayı genellikle [http://localhost:3000](http://localhost:3000) adresinde varsayılan web tarayıcınızda başlatacaktır.
 
 
-Kullanım
-i-Weather-App, kullanıcı dostu bir arayüz sunar:
 
-Hava durumunu görüntülemek istediğiniz şehrin adını arama çubuğuna girin veya konum hizmetlerinin bulunduğunuz yeri algılamasına izin verin.
-Sıcaklık, rüzgar hızı, nem, basınç ve haftalık tahmin gibi hava durumu detayları görüntülenecektir.
-Kullanıcı puanlarına, mutfak türlerine ve fotoğraflara göre şehrin popüler restoranlarını keşfedin (restoran API entegrasyonu gerektirir).
-Yol Haritası
-Öneri ve otomatik tamamlama ile şehir arama işlevselliğini geliştirin.
-Şiddetli hava koşullarında bildirim sağlayan hava durumu uyarıları ekleyin.
-Görsel şehir keşfi için harita işlevsellikleri ekleyin.
-Kişiselleştirilmiş deneyimler ve kaydedilen konumlar için kullanıcı kimlik doğrulama özellikleri ekleyin.
-Katkıda Bulunma
-i-Weather-App'i geliştirmek için katkılarınızı memnuniyetle karşılıyoruz! Depoyu forklayın, geliştirmelerinizle pull request'ler oluşturun veya sorunları bildirerek bu uygulamayı daha da iyi hale getirmemize yardımcı olun.
+## Kullanım
 
-Yukarıdaki README dosyası, i-Weather-App projesinin ana özelliklerini, kullanılan teknolojileri, kurulum talimatlarını ve katkıda bulunma yolunu açıklayarak projenin daha iyi anlaşılmasını sağlar. Uygulamanızın gelişimi için başarılar dilerim!
+i-Weather-App, hava durumu bilgilerini görüntülemek ve şehir keşfi yapmak için kullanıcı dostu bir web uygulamasıdır. İşte uygulamanın özellikleri:
+
+- **Hava Durumu Görüntüleme**:
+  - Hava durumunu görüntülemek istediğiniz şehrin adını arama çubuğuna girin veya konum hizmetlerinin bulunduğunuz yeri algılamasına izin verin.
+  - Sıcaklık, rüzgar hızı, nem, basınç ve haftalık tahmin gibi hava durumu detayları görüntülenecektir.
+
+- **Şehir Keşfi**:
+  - Kullanıcı dostu bir arayüz üzerinden şehir keşfi yapın.
+
+- **Restoran Keşfi**:
+  - Şehirdeki popüler restoranları keşfedin.
+
+Uygulama, hava durumu bilgilerini gerçek zamanlı olarak görüntüler ve kullanıcıların şehirlerdeki restoranları keşfetmelerine olanak tanır. Harita işlevselliği ile kullanıcılar istedikleri şehirleri görsel olarak keşfedebilir ve hava durumu detaylarına erişebilirler.
+
+
+
+
+## Roadmap
+
+### Hava Durumu Uyarıları
+
+- [ ] Şiddetli hava koşullarında bildirim sağlayan hava durumu uyarıları ekleyin.
+  
+### Görsel Şehir Keşfi
+
+- [ ] Görsel şehir keşfi için harita işlevsellikleri ekleyin.
+  
+### Kullanıcı Kimlik Doğrulama Özellikleri
+
+- [ ] Kişiselleştirilmiş deneyimler ve kaydedilen konumlar için kullanıcı kimlik doğrulama özellikleri ekleyin.
+
+### Çoklu Dil Desteği
+
+- [ ] Çoklu dil desteği ekleyin.
+    - [ ] Çince
+    - [ ] İspanyolca
+
+## Katkıda Bulunma
+
+i-Weather-App'i geliştirmek için katkılarınızı memnuniyetle karşılarım! Depoyu forklayın, geliştirmelerinizle pull request'ler oluşturun veya sorunları bildirerek bu uygulamayı daha da iyi hale getirmemize yardımcı olun.
+
+## Iletişim
+
+E-posta: [song.emrah@gmail.com](mailto:song.emrah@gmail.com)
+
+## Teşekkürler
+
+Bu projeyi oluşturmama vesile olan [@ozcanzaferayan](https://github.com/ozcanzaferayan) ve [React-Staj-2024](https://github.com/React-Staj-2024) ekibine teşekkür ederim.
+
+
