@@ -140,7 +140,7 @@ input::placeholder {
   width: 450px !important;
   height: 64px !important;
   padding: 0 5px;
-  background-color: #1e1e29;
+  background-color: #1e1e29 !important;
   border: none !important;
   border-radius: 8px !important;
   outline: none !important;
@@ -151,13 +151,13 @@ input::placeholder {
   }
 }
 .css-1wy0on6 {
-  background-color: #1e1e29;
+  background-color: #1e1e29 !important;
 }
 .css-1u9des2-indicatorSeparator {
-  background-color: #1e1e29;
+  background-color: #1e1e29 !important;
 }
 .css-1xc3v61-indicatorContainer {
-  background-color: #1e1e29;
+  background-color: #1e1e29 !important;
 }
 @media (max-width: 640px) {
   .css-art2ul-ValueContainer2 {
