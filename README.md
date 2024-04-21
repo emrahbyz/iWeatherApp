@@ -14,6 +14,30 @@
   </p>
 </div>
 
+<details>
+  <summary>İçerik</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">Proje Hakkında</a>
+      <ul>
+        <li><a href="#built-with">Built</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Başlarken</a>
+      <ul>
+        <li><a href="#prerequisites">ÖnKoşullar</a></li>
+        <li><a href="#installation">Kurulum</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Kullanım</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contact">İletişim</a></li>
+    <li><a href="#acknowledgments">Teşekkür</a></li>
+  </ol>
+</details>
+
+
 
 i-Weather-App
 i-Weather-App, React ve Tailwind CSS kullanılarak geliştirilmiş, hava durumu bilgilerini, tahminlerini ve seçilen şehirdeki popüler restoranları keşfetmenizi sağlayan bir web uygulamasıdır. Başlamak için bir şehir adı girin veya konum servislerini kullanarak bulunduğunuz yerin hava durumuna göz atın!
