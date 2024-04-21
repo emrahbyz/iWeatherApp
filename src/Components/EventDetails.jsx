@@ -8,7 +8,7 @@ const EventDetails = ({ selectedCity }) => {
 
   useEffect(() => {
     const fetchRestaurants = async () => {
-      const key = "36f9fc57d9mshdbeaddb57f8082ep1eedb6jsn712906af7423";
+      const key = "48f9d9feb7msh825c349e9db881dp17b87ejsn32b9451ceebd";
       if (selectedCity && selectedCity.latitude && selectedCity.longitude) {
         const options = {
           method: "GET",
