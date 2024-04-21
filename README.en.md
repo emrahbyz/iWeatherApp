@@ -148,9 +148,10 @@ The application displays real-time weather information and allows users to explo
 
 ### Multi-Language Support
 
-- [ ] Add multi-language support.
+- [x] Add multi-language support.
   - [ ] Chinese
   - [ ] Spanish
+  - [x] English
 
 ## Contributing
 
