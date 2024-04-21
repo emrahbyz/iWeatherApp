@@ -143,7 +143,7 @@ const Home = () => {
 
   return (
     <div
-      className={`text-white flex-col w-full bg-gray-900 h-[100vh] bg-cover bg-center flex ${
+      className={`text-white flex-col w-full bg-gray-600 h-[100vh] bg-cover bg-center flex ${
         coords ? "bg-gray-900" : ""
       }`}
     >
@@ -164,7 +164,7 @@ const Home = () => {
               Choose a location to see the weather forecast
             </p>
             <div className="flex items-center justify-end mt-8">
-              <div className="">
+              <div>
                 <AsyncSelect
                   debounceTimeout={1000}
                   loadOptions={loadOptions}
@@ -195,7 +195,7 @@ const Home = () => {
 
       {(selectedCity || coords) && (
         <div className="flex items-center absolute right-0 p-4 mr-4 xl:mr-16 justify-end mt-[68px] 2xl:mt-8">
-          <div className="w-72 sm:w-80">
+          <div className="w-[300px] sm:w-[330px]">
             <AsyncSelect
               className="select"
               debounceTimeout={1000}
