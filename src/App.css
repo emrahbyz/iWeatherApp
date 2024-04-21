@@ -147,6 +147,9 @@ input::placeholder {
     width: 360px !important;
   }
 }
+.css-1wy0on6 {
+  visibility: hidden;
+}
 @media (max-width: 640px) {
   .css-art2ul-ValueContainer2 {
     width: 250px !important;
