@@ -34,8 +34,8 @@ const ForecastWeather = ({ weatherData }) => {
 
     for (let i = 0; i < 5; i++) {
       const weatherDescription = weatherData.list[i].weather[0].description;
-      const timestamp = weatherData.list[i].dt; // Unix zaman damgası (saniye cinsinden)
-      const date = new Date(timestamp * 1000); // Unix zaman damgasını milisaniye cinsine çevirerek tarih nesnesi oluştur
+      const timestamp = weatherData.list[i].dt;
+      const date = new Date(timestamp * 1000);
       const currentHour = date.getHours();
       const isNight = currentHour < 6 || currentHour >= 19;
 
@@ -112,7 +112,7 @@ const ForecastWeather = ({ weatherData }) => {
         size: 24,
       }}
     >
-      <div className="  w-[1340px] mt-16 2xl:mt-6 h-[840px] ml-6 sm:ml-44 md:ml-6 lg:ml-4 xl:ml-48 2xl:ml-64 flex flex-col mx-auto items-start  ">
+      <div className="  w-[1340px] mt-20  2xl:mt-6 h-[840px] ml-6 sm:ml-44 md:ml-6 lg:ml-4 xl:ml-48 2xl:ml-64 flex flex-col mx-auto items-start  ">
         <div className="grid  grid-row-2 gap-2">
           <div className="bg-gray-800 flex items-center rounded-xl justify-center p-1  w-[330px] h-[280px] sm:w-[359px] sm:h-[328px]   ">
             <div
@@ -227,7 +227,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className="animate-spin-pulse ease-in-out"
-                    src={weatherIcons[1].iconPath} // İlk gün için ikon yolunu al
+                    src={weatherIcons[1].iconPath}
                     alt=""
                   />
                 </div>
@@ -267,7 +267,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className="animate-spin-pulse ease-in-out"
-                    src={weatherIcons[2].iconPath} // İlk gün için ikon yolunu al
+                    src={weatherIcons[2].iconPath}
                     alt=""
                   />
                 </div>
@@ -288,7 +288,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className=" animate-spin-pulse ease-in-out"
-                    src={weatherIcons[3].iconPath} // İlk gün için ikon yolunu al
+                    src={weatherIcons[3].iconPath}
                     alt=""
                   />
                 </div>
@@ -308,7 +308,7 @@ const ForecastWeather = ({ weatherData }) => {
                 <div className="w-[56px] h-[56px] flex justify-center items-center">
                   <img
                     className=" animate-spin-pulse ease-in-out"
-                    src={weatherIcons[4].iconPath} // İlk gün için ikon yolunu al
+                    src={weatherIcons[4].iconPath}
                     alt=""
                   />
                 </div>
