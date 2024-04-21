@@ -106,9 +106,9 @@ const Home = () => {
     } catch (error) {
       console.log(error.message);
       if (error.response && error.response.status === 404) {
-        alert("Lütfen geçerli bir şehir adı girin.");
+        console.log("Enter valid city name");
       } else {
-        alert("Hava durumu verileri alınamadı.");
+        console.log("Enter valid city name");
       }
     }
     setLoading(false);
