@@ -146,6 +146,10 @@ const Home = () => {
       className={`text-white flex-col w-full bg-gray-600 h-[100vh] bg-cover bg-center flex ${
         coords ? "bg-gray-900" : ""
       }`}
+      style={{
+        background: "url('/images/img/img11.png')",
+        backgroundSize: "cover",
+      }}
     >
       <div className="mt-[36px] opacity-80">
         <div className="flex items-center justify-center gap-2">

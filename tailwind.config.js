@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       animation: {
-        "spin-pulse": "pulse 500s linear infinite  ",
+        "spin-pulse": "pulse 5s linear infinite  ",
       },
     },
     colors: {

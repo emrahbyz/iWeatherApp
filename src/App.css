@@ -133,6 +133,15 @@ input::placeholder {
   border-radius: 8px !important;
   outline: none !important;
 }
+.css-hlgwow {
+  width: 450px !important;
+  height: 64px !important;
+  padding: 0 5px;
+  background-color: #1e1e29;
+  border: none !important;
+  border-radius: 8px !important;
+  outline: none !important;
+}
 @media (max-width: 1280px) {
   .css-art2ul-ValueContainer2 {
     width: 360px !important;

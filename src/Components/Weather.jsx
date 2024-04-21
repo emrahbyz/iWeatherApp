@@ -39,13 +39,12 @@ const Weather = ({ weather, uvData, weatherData }) => {
 
     for (let i = 0; i < 5; i++) {
       const weatherDescription = weather.list[i].weather[0].description;
-      const timestamp = weather.list[i].dt; // Unix zaman damgası (saniye cinsinden)
-      const date = new Date(timestamp * 1000); // Unix zaman damgasını milisaniye cinsine çevirerek tarih nesnesi oluştur
+      const timestamp = weather.list[i].dt;
+      const date = new Date(timestamp * 1000);
       const currentHour = date.getHours();
       const isNight = currentHour < 6 || currentHour >= 20;
       let iconPath = "/images/icons/sun-little-cloud.png";
       if (isNight) {
-        // Gece için simgeler
         if (weatherDescription.includes("clear sky")) {
           iconPath = nightIcons[0];
         } else if (weatherDescription.includes("few clouds")) {
@@ -58,7 +57,6 @@ const Weather = ({ weather, uvData, weatherData }) => {
           iconPath = nightIcons[4];
         }
       } else {
-        // Gündüz için simgeler
         if (weatherDescription.includes("clear sky")) {
           iconPath = dayIcons[0];
         } else if (weatherDescription.includes("few clouds")) {
@@ -72,14 +70,12 @@ const Weather = ({ weather, uvData, weatherData }) => {
         }
       }
 
-      // İkon ve hava durumu açıklamasını bir nesne olarak ekle
       icons.push({ iconPath, weatherDescription });
     }
 
     return icons;
   };
 
-  // Örnek kullanım: 5 günlük hava durumu verilerinden ikonları almak
   const weatherIcons = getWeatherIconsForFiveDays(weather);
   console.log(weatherIcons);
 
