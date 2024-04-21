@@ -156,9 +156,11 @@ Uygulama, hava durumu bilgilerini gerçek zamanlı olarak görüntüler ve kulla
 
 ### Çoklu Dil Desteği
 
-- [ ] Çoklu dil desteği ekleyin.
-    - [ ] Çince
-    - [ ] İspanyolca
+- [x] Çoklu dil desteği ekle.
+  - [ ] Çince
+  - [ ] İspanyolca
+  - [x] İngilizce
+
 
 ## Katkıda Bulunma
 
