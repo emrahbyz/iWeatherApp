@@ -1,16 +1,16 @@
- <h3 align="center">i-Weather</h3>
-
+<h1 align="center">i-Weather-App</h1>
   <p align="center">
-    i-Weather
+ <img src="public/images/icons/Vector.png" alt="Logo" width="60" height="80">
+  </a>
     <br />
-   <a href="https://github.com/emrahbyz/iWeatherApp"><strong>Explore the docs »</strong></a>
+   <a href="https://github.com/emrahbyz/iWeatherApp"><strong>Kaynak Kodları »</strong></a>
     <br />
     <br />
     <a href="https://i-weather-app-wine.vercel.app">Projeye Git</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/emrahbyz/iWeatherApp/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/emrahbyz/iWeatherApp/issues/new?labels=enhancement&template=feature-request---.md">İstek</a>
   </p>
 </div>
 
@@ -37,16 +37,34 @@
   </ol>
 </details>
 
+## Proje Hakkında
 
 
-i-Weather-App
+<p align="center">
+  <img src="src/screenshots/gif.gif" width="600" alt="GIF">
+</p>
+
+ <p>
+  <img src="src/screenshots/13.png" width="500" height="500" alt="Logo">
+  <img src="src/screenshots/12.png" width="500" height="500" alt="Logo">
+ 
+</p>
+
+
+
+
+## i-Weather-App
+
 i-Weather-App, React ve Tailwind CSS kullanılarak geliştirilmiş, hava durumu bilgilerini, tahminlerini ve seçilen şehirdeki popüler restoranları keşfetmenizi sağlayan bir web uygulamasıdır. Başlamak için bir şehir adı girin veya konum servislerini kullanarak bulunduğunuz yerin hava durumuna göz atın!
 
-Ana Özellikler
-Hava Durumu Bilgisi: Gerçek zamanlı hava durumu verilerini (sıcaklık, rüzgar hızı, nem, basınç) ve haftalık detaylı tahminleri görüntüleyin.
-Şehir Keşfi: Dünyanın herhangi bir şehrini arayın ve hava durumunun yanı sıra en iyi restoranlarını keşfedin.
-Restoran Keşfi: Kullanıcı puanlarına, mutfak türlerine ve fotoğraflara göre popüler restoranları bulun (restoran API entegrasyonu gerektirir).
-Duyarlı Tasarım: Masaüstlerinden cep telefonlarına kadar farklı cihazlarda sorunsuz bir kullanıcı deneyimi yaşayın.
+### Ana Özellikler
+
+- **Hava Durumu Bilgisi:** Gerçek zamanlı hava durumu verilerini (sıcaklık, rüzgar hızı, nem, basınç) ve haftalık detaylı tahminleri görüntüleyin.
+  
+- **Şehir Keşfi:** Dünyanın herhangi bir şehrini arayın ve hava durumunun yanı sıra en iyi restoranlarını keşfedin.
+  
+- **Restoran Keşfi:** Kullanıcı puanlarına, mutfak türlerine ve fotoğraflara göre popüler restoranları bulun (restoran API entegrasyonu gerektirir).
+
 Kullanılan Teknolojiler
 React: Kullanıcı arayüzleri oluşturmak için modern bir JavaScript kütüphanesi.
 Tailwind CSS: Hızlı ve özelleştirilebilir stiller oluşturmak için yardımcı program odaklı bir CSS çerçevesi.
