@@ -53,47 +53,71 @@
 
 
 
-## i-Weather-App
-
-i-Weather-App, React ve Tailwind CSS kullanılarak geliştirilmiş, hava durumu bilgilerini, tahminlerini ve seçilen şehirdeki popüler restoranları keşfetmenizi sağlayan bir web uygulamasıdır. Başlamak için bir şehir adı girin veya konum servislerini kullanarak bulunduğunuz yerin hava durumuna göz atın!
-
 ### Ana Özellikler
 
 - **Hava Durumu Bilgisi:** Gerçek zamanlı hava durumu verilerini (sıcaklık, rüzgar hızı, nem, basınç) ve haftalık detaylı tahminleri görüntüleyin.
-  
+
 - **Şehir Keşfi:** Dünyanın herhangi bir şehrini arayın ve hava durumunun yanı sıra en iyi restoranlarını keşfedin.
-  
+
 - **Restoran Keşfi:** Kullanıcı puanlarına, mutfak türlerine ve fotoğraflara göre popüler restoranları bulun (restoran API entegrasyonu gerektirir).
 
-Kullanılan Teknolojiler
-React: Kullanıcı arayüzleri oluşturmak için modern bir JavaScript kütüphanesi.
-Tailwind CSS: Hızlı ve özelleştirilebilir stiller oluşturmak için yardımcı program odaklı bir CSS çerçevesi.
-Ek Paketler
-react-select: Kullanıcı dostu şehir seçimi açılır menüsü.
-phosphor-react: Modern ve özelleştirilebilir hava durumu simgeleri.
-debounce-promise: Kullanıcı etkileşimlerini hızla ele alarak performansı optimize eder.
-axios: Hava durumu verilerini almak için HTTP istekleri yapar.
-react-icons: Font Awesome ve Material Design gibi popüler simge setlerine erişim sağlar.
-react-geolocated: Kullanıcının konumunu otomatik hava durumu alma işlemi için belirler.
-Kurulum
-Depoyu klonlayın:
-bash
-Copy code
-git clone https://github.com/kullanici_adi/i-weather-app.git
-Proje dizinine gidin:
-bash
-Copy code
-cd i-weather-app
-Bağımlılıkları yükleyin:
-bash
-Copy code
-npm install
-(Opsiyonel) Restoran API anahtarınızı konfigürasyon dosyasında ayarlayın (detaylar kod içinde mevcuttur).
-Geliştirme sunucusunu başlatın:
-bash
-Copy code
-npm start
-Bu işlem, uygulamayı genellikle http://localhost:3000 adresinde varsayılan web tarayıcınızda başlatacaktır.
+- **Duyarlı Tasarım:** Web uygulaması, farklı cihazlarda (telefon, tablet, masaüstü) sorunsuz çalışacak şekilde duyarlı bir tasarıma sahiptir.
+
+### Kullanılan Teknolojiler
+
+Bu projeyi oluşturmak için şu ana teknolojiler kullanılmıştır:
+
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" width="60" height="60" alt="React Logo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Vitejs-logo.svg/1200px-Vitejs-logo.svg.png" width="60" height="60" alt="Vite Logo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" width="60" height="60" alt="Tailwind CSS Logo">
+</p>
+
+- **React**: Kullanıcı arayüzü geliştirmek için kullanılan JavaScript kütüphanesi.
+- **Vite**: Hızlı ve modern bir geliştirme ortamı sağlayan JavaScript aracı.
+- **Tailwind CSS**: Hızlı ve esnek bir CSS framework'ü.
+
+### Ek Paketler
+
+Bu projede kullanılan ek paketler ve kütüphaneler:
+
+- **react-select**: Kullanıcı dostu şehir seçimi açılır menüsü sağlar.
+- **phosphor-react**: Modern ve özelleştirilebilir hava durumu simgeleri için kullanılır.
+- **debounce-promise**: Kullanıcı etkileşimlerini hızla ele alarak performansı optimize eder.
+- **axios**: Hava durumu verilerini almak için HTTP istekleri yapar.
+- **react-icons**: Font Awesome ve Material Design gibi popüler simge setlerine erişim sağlar.
+- **react-geolocated**: Kullanıcının konumunu otomatik olarak belirleyerek hava durumu verilerini alma işlemi için kullanılır.
+
+### Kurulum
+
+1. Depoyu klonlayın:
+
+    ```bash
+    git clone https://github.com/emrahbyz/iWeatherApp.git
+    ```
+
+2. Proje dizinine gidin:
+
+    ```bash
+    cd iWeatherApp
+    ```
+
+3. Bağımlılıkları yükleyin:
+
+    ```bash
+    npm install
+    ```
+
+4. (Opsiyonel) Restoran API anahtarınızı konfigürasyon dosyasında ayarlayın (detaylar kod içinde mevcuttur).
+
+5. Geliştirme sunucusunu başlatın:
+
+    ```bash
+    npm run dev
+    ```
+
+Bu işlem, uygulamayı genellikle [http://localhost:3000](http://localhost:3000) adresinde varsayılan web tarayıcınızda başlatacaktır.
+
 
 Kullanım
 i-Weather-App, kullanıcı dostu bir arayüz sunar:
