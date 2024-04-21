@@ -1,4 +1,8 @@
 <h1 align="center">i-Weather-App</h1>
+
+Read this README in: [Türkçe](README.md) | [English](README.en.md)
+
+
   <p align="center">
  <img src="public/images/icons/Vector.png" alt="Logo" width="60" height="80">
   </a>
