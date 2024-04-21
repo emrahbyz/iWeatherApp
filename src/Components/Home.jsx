@@ -164,7 +164,7 @@ const Home = () => {
               Choose a location to see the weather forecast
             </p>
             <div className="flex items-center justify-end mt-8">
-              <div className="w-72 sm:w-96">
+              <div className="">
                 <AsyncSelect
                   debounceTimeout={1000}
                   loadOptions={loadOptions}
