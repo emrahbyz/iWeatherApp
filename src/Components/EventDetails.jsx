@@ -48,7 +48,14 @@ const EventDetails = ({ selectedCity }) => {
   return (
     <div className=" 2xl:relative  xl:relative lg:relative md:relative bottom-[830px] left-[400px]  xl:left-[550px] ml-4 2xl:ml-0 2xl:left-[650px]  ">
       {loading ? (
-        <p>Loading...</p>
+        <div className="spinner absolute mr-5">
+          <img
+            src="/images/img/12.png"
+            className="w-[32px] h-[32px] animate-spin animate-infinite"
+            alt=""
+          />
+          <p>Restaurant loading...</p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3  gap-5 text-white  absolute">
           {restaurants.map((restaurant, index) => (
