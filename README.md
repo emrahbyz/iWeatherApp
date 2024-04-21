@@ -1,3 +1,20 @@
+ <h3 align="center">i-Weather</h3>
+
+  <p align="center">
+    i-Weather
+    <br />
+   <a href="https://github.com/emrahbyz/iWeatherApp"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://i-weather-app-wine.vercel.app">Projeye Git</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
+</div>
+
+
 i-Weather-App
 i-Weather-App, React ve Tailwind CSS kullanılarak geliştirilmiş, hava durumu bilgilerini, tahminlerini ve seçilen şehirdeki popüler restoranları keşfetmenizi sağlayan bir web uygulamasıdır. Başlamak için bir şehir adı girin veya konum servislerini kullanarak bulunduğunuz yerin hava durumuna göz atın!
 
