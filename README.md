@@ -41,7 +41,7 @@
   <img src="src/screenshots/gif.gif" width="600" alt="GIF">
 </p>
 
- <p>
+ <p align="center"> 
   <img src="src/screenshots/13.png" width="500" height="500" alt="Logo">
   <img src="src/screenshots/12.png" width="500" height="500" alt="Logo">
  
